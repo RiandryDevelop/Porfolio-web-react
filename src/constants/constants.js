@@ -1,12 +1,12 @@
 export const projects = [
   {
-    title: "MERN Memories",
+    title: "Journal App React",
     description:
-      "Using React, Node.js, Express & MongoDB you'll learn how to build a Full Stack MERN Application - from start to finish. The App is called Memories and it is a simple social media app that allows users to post interesting events that happened in their lives.",
-    image: "/images/1.png",
-    tags: ["Mongo", "Express", "React", "Node"],
-    source: "https://codepen.io/riandrydevelop/full/LYdXgjv",
-    visit: "https://github.com/RiandryDevelop/Social-App-MERN-Memories",
+      "Using React, Firebase , Cloudinary and others technologies ,  I build this journal app where you can login with your own user, also create, modified, delete notes and add photo ...   ",
+    image: "/images/Journal-App.png",
+    tags: ["Cloudinary", "Firebase", "React"],
+    source: "https://riandrydevelop.github.io/Journal-App-React/",
+    visit: "https://github.com/RiandryDevelop/Journal-App-React",
     id: 0,
   },
   {
@@ -30,20 +30,20 @@ export const projects = [
     id: 2,
   },
   {
-    title: "Map App",
+    title: "Calendar App",
     description:
-      "This is a code where a used a map api , and which you can comment some places",
-    image: "/images/travel-map-app.jpg",
-    tags: ["React", "MapBox", "MongoDB", "Node"],
-    source: "https://codepen.io/riandrydevelop/full/LYdXgjv",
-    visit: "https://github.com/RiandryDevelop/FriendlyMap",
+      "This is a calendar application which can be used with your company, group of friends, etc. to schedule important days and/or events, remember dates,...",
+    image: "/images/CalendarAppMern.png",
+    tags: ["React", "React-Big-Calendar", "MongoDB", "Node"],
+    source: "https://calendar-app-fullstack.herokuapp.com/",
+    visit: "https://github.com/RiandryDevelop/Calendar-App-Mern",
     id: 3,
   },
 ];
 
 export const TimeLineData = [
   ,
-  { year: 2019, text: "Started learning Web developtment by my own" },
-  { year: 2020, text: "Started my first collab with other developers" },
+  { year: 2019, text: "Started learning Web development by my own" },
+  { year: 2020, text: "Started my first collaboration with other developers" },
   { year: 2021, text: "I've gotten my first small projects and works," },
 ];
