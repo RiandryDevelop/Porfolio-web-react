@@ -15,7 +15,7 @@ const Hero = (props) => (
       <LeftSection>
         <SectionTitle main center>
           Welcome to <br />
-          my Web React Portfolio
+          my Web Frameworks Portfolio
         </SectionTitle>
         <SectionText>
           I'm Riandry Connor , and the purpose of this portfolio is to show to
