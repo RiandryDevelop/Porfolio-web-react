@@ -18,13 +18,14 @@ const Hero = (props) => (
           my Web Frameworks Portfolio
         </SectionTitle>
         <SectionText>
-          I'm Riandry Connor , and the purpose of this portfolio is to show to
-          the viewers of which kind of things I am able, like you will see in
-          the projects
+                    "I'm Riandry Connor, and this portfolio serves as a
+                    showcase of my abilities and accomplishments,
+                    as you'll witness in the showcased projects. My goal is to demonstrate years of expertise,
+                    highlighting the scalability and sophistication of my portfolio's projects."
         </SectionText>
         <Button>
           <a
-            href="https://riandrydevelop.github.io/Porfolio-web-design/assets/RiandryConnor(%20CV).pdf"
+                        href="/images/Riandry Connor Fullstack Dev CV v0.2.pdf"
             target="_blank"
           >
             CV

@@ -1,5 +1,5 @@
 import React from "react";
-import { DiFirebase, DiReact, DiZend } from "react-icons/di";
+import { DiFirebase, DiReact, DiAngularSimple, DiZend, DiAndroid, DiNetmagazine, DiNodejs } from "react-icons/di";
 import {
   Section,
   SectionDivider,
@@ -19,31 +19,36 @@ const Technologies = () => (
     <SectionDivider divider />
     <SectionTitle>Technologies</SectionTitle>
     <SectionText>
-      I've worked with a range a technologies in the web development world. From
-      Back-end To Design
+            "I possess extensive experience working with a diverse array of technologies
+            in the web development domain, encompassing both front-end, back-end,
+            and design aspects, along with mobile development and the integration
+            of DevOps practices."
     </SectionText>
     <List>
       <ListItem>
         <picture>
           <DiReact size="3rem" />
+          <DiAngularSimple size="3rem" />
         </picture>
         <ListContainer>
           <ListTitle>Front-End</ListTitle>
           <ListParagraph>
             Experience with <br />
-            React.js
+            Reactjs,Angular
           </ListParagraph>
         </ListContainer>
       </ListItem>
       <ListItem>
         <picture>
-          <DiFirebase size="3rem" />
+                    <DiFirebase size="3rem" />
+                    <DiNetmagazine size="3rem" />
+                    <DiNodejs size="3rem" />
         </picture>
         <ListContainer>
           <ListTitle>Back-End</ListTitle>
           <ListParagraph>
             Experience with <br />
-            Node and Databases
+            Nodejs,.Net
           </ListParagraph>
         </ListContainer>
       </ListItem>
@@ -58,7 +63,19 @@ const Technologies = () => (
             tools like Figma
           </ListParagraph>
         </ListContainer>
-      </ListItem>
+            </ListItem>
+       <ListItem>
+        <picture>
+        <DiAndroid size="3rem" />
+        </picture>
+        <ListContainer>
+        <ListTitle>MOBILE</ListTitle>
+        <ListParagraph>
+         Experience with <br />
+         Kotlin(android)/ReactNative(Hibrid) 
+         </ListParagraph>
+         </ListContainer>
+       </ListItem>
     </List>
     <SectionDivider colorAlt />
   </Section>

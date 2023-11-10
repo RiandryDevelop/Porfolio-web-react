@@ -67,10 +67,10 @@ const Timeline = () => {
     <Section id="about">
       <SectionTitle>About Me</SectionTitle>
       <SectionText>
-        I'm a web developer specialized in E-commerce pages, My goals as a
-        developer are to help both companies and large or small businesses to
-        have their own pages in order to increase their sales, increase and
-        streamline processes....
+              "As a seasoned full-stack web developer,
+              my expertise spans a wide spectrum of technologies, including Node,
+              .NET, Kotlin, React, React Native, Angular, and Docker. I'm proficient in both SQL and NoSQL databases. My primary focus is on e-commerce solutions, aiding companies of all sizes in enhancing their online presence, optimizing processes, and boosting sales.
+              My goal is to empower businesses with custom web solutions that drive growth and efficiency."
       </SectionText>
       <CarouselContainer ref={carouselRef} onScroll={handleScroll}>
         <>

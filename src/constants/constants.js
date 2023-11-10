@@ -10,33 +10,31 @@ export const projects = [
     id: 0,
   },
   {
-    title: "E-Commerce (Gym Dream World)",
-    description:
-      "A modest e-commerce designed for those who need a page to sell their products.",
-    image: "/images/e-commerce.jpg",
-    tags: ["JavaScript", "Node"],
-    source: "https://google.com",
-    visit: "https://web-store-js-template.herokuapp.com/",
+      title: "Consorcio(Data Administration System.)",
+      description:"This is a sophisticated software solution that combines the power of Angular and .NET. It's designed to streamline data management, enhance security, and improve application performance. It's a valuable tool for developers looking to optimize their data administration processes.",
+    image: "/images/consorcio_ui_img.png",
+    tags: ["JavaScript", "Angular", ".Net", "SQL","Docker", "Azure"],
+      source: "https://codepen.io/riandrydevelop/full/vYjabxz",
+      visit: "https://github.com/RiandryDevelop/Consorcio_ui",
     id: 1,
   },
   {
-    title: "CRUD App",
+    title: "Gif Expert App",
     description:
-      "A CRUD app where you can edit or create characters of Breaking Bad.",
-    image: "/images/CRUD_app.jpg",
+            "Unleash your GIF- hunting skills with our React - powered GIF Expert App! Explore a world of endless entertainment as it seamlessly fetches animated treasures from a dynamic API.Dive into a whirlwind of creativity, humor, and emotion in a user - friendly, interactive experience.",
+    image: "/images/GifExpertApp.png",
     tags: ["React", "Node", "Firebase"],
-    source: "https://riandrydevelop.github.io/BreakingBad_CRUD/",
-    visit: "https://github.com/RiandryDevelop/BreakingBad_CRUD",
+      source: "https://riandrydevelop.github.io/gif_expert_app/",
+      visit: "https://github.com/RiandryDevelop/gif_expert_app",
     id: 2,
   },
   {
-    title: "Calendar App",
-    description:
-      "This is a calendar application which can be used with your company, group of friends, etc. to schedule important days and/or events, remember dates,...",
-    image: "/images/CalendarAppMern.png",
-    tags: ["React", "React-Big-Calendar", "MongoDB", "Node"],
-    source: "https://calendar-app-fullstack.herokuapp.com/",
-    visit: "https://github.com/RiandryDevelop/Calendar-App-Mern",
+    title: "PingPongWebGame",
+        description: "Dive into the ultimate ping pong showdown with our HTML, CSS, and JavaScript- powered game.Experience fast - paced action, stunning graphics, and immersive gameplay.It's a web-based ping pong extravaganza that will keep you on the edge of your seat!",
+    image: "/images/HTML5PingPongGame.png",
+    tags: ["HTML", "CSS", "JS", "GameDev"],
+      source: "https://riandrydevelop.github.io/PortafolioWEbRiandry/Juego%20Ping/indexJuego.html",
+      visit: "https://github.com/RiandryDevelop/PortafolioWEbRiandry/tree/master/Juego%20Ping",
     id: 3,
   },
 ];
@@ -45,5 +43,6 @@ export const TimeLineData = [
   ,
   { year: 2019, text: "Started learning Web development by my own" },
   { year: 2020, text: "Started my first collaboration with other developers" },
-  { year: 2021, text: "I've gotten my first small projects and works," },
+    { year: 2021, text: "I've gotten my first small projects and works," },
+    {year:2022, text:"Keep learning new tecnologies and working"}
 ];
