@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 
 import {
@@ -9,7 +8,7 @@ import {
 import Button from "../../styles/GlobalComponents/Button";
 import { LeftSection } from "./HeroStyles";
 
-const Hero = (props) => (
+const Hero = () => (
   <>
     <Section row nopadding>
       <LeftSection>
