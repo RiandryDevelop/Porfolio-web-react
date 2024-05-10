@@ -17,7 +17,7 @@ const Hero = () => (
           my Web Frameworks Portfolio
         </SectionTitle>
         <SectionText>
-                    "I'm Riandry Connor, and this portfolio serves as a
+                    "I'm <span style={{ color: "#f0f0f1", fontWeight: "bolder" }}>Riandry Connor</span>, and this portfolio serves as a
                     showcase of my abilities and accomplishments,
                     as you'll witness in the showcased projects. My goal is to demonstrate years of expertise,
                     highlighting the scalability and sophistication of my portfolio's projects."
@@ -26,12 +26,14 @@ const Hero = () => (
           <a
                         href="/images/Riandry Connor Fullstack Dev CV v0.2.pdf"
             target="_blank"
-          >
+            style={{ color: "#0f1624" }} 
+            >
             CV
           </a>
         </Button>
         <Button>
           <a
+            style={{ color: "#0f1624" }}
             href="https://riandrydevelop.github.io/Porfolio-web-design/"
             target="_blank"
           >
@@ -40,6 +42,7 @@ const Hero = () => (
         </Button>
         <Button>
           <a
+            style={{ color: "#0f1624" }}
             href="https://riandrydevelop.github.io/Certifications/"
             target="_blank"
           >
