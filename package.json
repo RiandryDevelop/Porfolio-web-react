@@ -6,8 +6,8 @@
   "dev": "next dev",
   "build": "next build && next export",
   "start": "next start",
-  "deploy": "npm run build && gh-pages -d out"
-},
+  "deploy": "gh-pages -d build --repo=https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/RiandryDevelop/Porfolio-web-react.git"
+ },
   "dependencies": {
     "next": "^12.1.6",
     "react": "17.0.2",
