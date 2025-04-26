@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start"
-  },
+  "dev": "next dev",
+  "build": "next build && next export",
+  "start": "next start",
+  "deploy": "npm run build && gh-pages -d out"
+},
   "dependencies": {
     "next": "^12.1.6",
     "react": "17.0.2",
@@ -14,5 +15,8 @@
     "react-icons": "^4.2.0",
     "styled-components": "^5.3.0",
     "styled-normalize": "^8.0.7"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
