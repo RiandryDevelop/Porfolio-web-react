@@ -24,7 +24,7 @@ const Hero = () => (
         </SectionText>
         <Button>
           <a
-                        href="/images/Riandry Connor Fullstack Dev CV v0.2.pdf"
+                        href="/images/RiandryConnorCV_v3.pdf"
             target="_blank"
             style={{ color: "#0f1624" }} 
             >
