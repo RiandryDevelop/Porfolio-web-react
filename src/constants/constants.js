@@ -5,7 +5,7 @@ export const projects = [
       "Using WordPress, WooCommerce, Elementor Pro, Rank Math SEO, and other premium plugins, I built this professional cosmetic dropshipping store. Shadow Fragance offers a seamless shopping experience with excellent SEO, fast performance, and full mobile optimization, allowing customers to explore and buy luxury cosmetics and fragrances with ease.",
     image: "/images/homepage-1.png",
     tags: ["WordPress","WooCommerce","Elementor","Premium Plugins"],
-    source: "shadowfragance.free.nf",
+    source: "http://shadowfragance.free.nf/",
     visit: "https://github.com/RiandryDevelop/shadowfragance",
     id: 0,
   },
