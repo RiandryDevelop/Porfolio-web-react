@@ -103,6 +103,7 @@ transition: 0.5s;
 
 export const TagList = styled.ul`
 display: flex;
+flex-direction: column;
 justify-content: space-around;
 padding: 2rem;
 `
