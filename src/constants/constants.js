@@ -34,7 +34,7 @@ export const projects = [
   title: "Library App (Mobile)",
   description:
     "Library App is a cross-platform React Native mobile application that works as a personal online library. Users can securely sign up, sign in, and manage their virtual book collection. The backend, built with Node.js and Express, connects to Firebase for authentication and storage, offering full CRUD operations for book management.",
-  image: "/images/LibraryApp_edit.PNG",
+  image: "/images/LibraryAPP_edit.PNG",
   tags: ["React Native", "Node.js", "Express", "Firebase"],
   source: "https://github.com/RiandryDevelop/LibraryAppUI",
   // visit: "https://github.com/RiandryDevelop/library_app",
