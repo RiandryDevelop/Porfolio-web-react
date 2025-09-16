@@ -24,7 +24,7 @@ const Hero = () => (
         </SectionText>
         <Button>
           <a
-                        href="/images/RiandryConnorCV_v3.pdf"
+                        href="/images/RiandryConnorCV_EN.pdf"
             target="_blank"
             style={{ color: "#0f1624" }} 
             >
