@@ -1,58 +1,73 @@
-import React from "react";
-
+import React, { useState } from "react";
 import {
   BlogCard,
   CardInfo,
-  ExternalLinks,
   GridContainer,
   HeaderThree,
   Hr,
   Tag,
   TagList,
   TitleContent,
-  UtilityList,
   Img,
 } from "./ProjectsStyles";
-import {
-  Section,
-  SectionTitle,
-} from "../../styles/GlobalComponents";
+import { Section, SectionTitle } from "../../styles/GlobalComponents";
 import { projects } from "../../constants/constants";
+import Modal from "../Modal/Modal";
 
-const Projects = () => (
-  <Section nopadding id="projects">
-    <SectionTitle main>Projects</SectionTitle>
-    <GridContainer>
-      {projects.map((p, i) => {
-        return (
-          <BlogCard key={i}>
-            <Img src={p.image} />
+const Projects = () => {
+  const [selected, setSelected] = useState(null);
+
+  return (
+    <Section nopadding id="projects">
+      <SectionTitle main>Case Studies</SectionTitle>
+
+      <GridContainer>
+        {projects.map((p, i) => (
+          <BlogCard key={i} onClick={() => setSelected(p)}>
+            <Img src={p.image} alt={p.title} />
+
             <TitleContent>
               <HeaderThree title>{p.title}</HeaderThree>
               <Hr />
             </TitleContent>
-            <CardInfo className="card-info">{p.description}</CardInfo>
-            <div>
-              <TitleContent>Stack</TitleContent>
-              <TagList >
-                {p.tags.map((t, i) => {
-                  return <Tag key={i}>{t}</Tag>;
-                })}
-              </TagList>
-            </div>
-            <UtilityList>
-              {/* <ExternalLinks href={p.visit} target="_blank">
-                Code
-              </ExternalLinks> */}
-              <ExternalLinks href={p.source} target="_blank">
-                Source
-              </ExternalLinks>
-            </UtilityList>
+
+            <CardInfo>
+              <strong>Problema:</strong> {p.problem}
+            </CardInfo>
+
+            <TagList>
+              {p.tags.map((t, i) => (
+                <Tag key={i}>{t}</Tag>
+              ))}
+            </TagList>
           </BlogCard>
-        );
-      })}
-    </GridContainer>
-  </Section>
-);
+        ))}
+      </GridContainer>
+
+      <Modal isOpen={!!selected} onClose={() => setSelected(null)}>
+        {selected && (
+          <>
+            <HeaderThree title>{selected.title}</HeaderThree>
+            <Hr />
+
+            <p><strong>Problema:</strong> {selected.problem}</p>
+            <p><strong>Solución:</strong> {selected.solution}</p>
+            <p><strong>Resultado:</strong> {selected.result}</p>
+
+            <TagList>
+              {selected.tags.map((t, i) => (
+                <Tag key={i}>{t}</Tag>
+              ))}
+            </TagList>
+
+            {selected.demo && (
+              <a href={selected.demo} target="_blank">Ver demo</a>
+            )}
+          </>
+        )}
+      </Modal>
+    </Section>
+  );
+};
 
 export default Projects;
