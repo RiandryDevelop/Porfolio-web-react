@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   BlogCard,
   CardInfo,
@@ -10,7 +11,9 @@ import {
   TitleContent,
   Img,
 } from "./ProjectsStyles";
-import { Section, SectionTitle,CTAButton } from "../../styles/GlobalComponents";
+import { Section, SectionTitle} from "../../styles/GlobalComponents";
+import CTAButton from "../../styles/GlobalComponents/CTAButton";
+import { cardVariants } from "../../styles/animations/variants";
 import { projects } from "../../constants/constants";
 import Modal from "../Modal/Modal";
 
@@ -21,9 +24,20 @@ const Projects = () => {
     <Section nopadding id="projects">
       <SectionTitle main>Case Studies</SectionTitle>
 
-      <GridContainer>
+      <GridContainer
+        as={motion.section}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ staggerChildren: 0.15 }}
+      >
         {projects.map((p, i) => (
-          <BlogCard key={i} onClick={() => setSelected(p)}>
+          <BlogCard 
+          as={motion.div}
+          variants={cardVariants}
+          whileHover={{ y: -6, scale: 1.02 }}
+          key={i} onClick={() => setSelected(p)}
+          >
             <Img src={p.image} alt={p.title} />
 
             <TitleContent>
@@ -62,11 +76,14 @@ const Projects = () => {
         ))}
       </TagList>
 
-      <CTAButton
-        href="mailto:riandrydevsoffers@gmail.com?subject=Proyecto similar a Case Study"
-      >
-        Quiero un proyecto similar
-      </CTAButton>
+<CTAButton
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  href={`mailto:riandrydevsoffers@gmail.com?subject=Proyecto similar a ${selected.title}`}
+>
+  Quiero un proyecto similar
+</CTAButton>
+
     </>
   )}
 </Modal>
