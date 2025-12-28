@@ -11,6 +11,7 @@ import {
   TitleContent,
   Img,
 } from "./ProjectsStyles";
+import Link from "next/link";
 import { Section, SectionTitle} from "../../styles/GlobalComponents";
 import CTAButton from "../../styles/GlobalComponents/CTAButton";
 import { cardVariants } from "../../styles/animations/variants";
@@ -33,11 +34,11 @@ const Projects = () => {
         transition={{ staggerChildren: 0.15 }}
       >
         {projects.map((p, i) => (
+          <Link href={`/case-studies/${p.slug}`} passHref>
           <BlogCard 
           as={motion.div}
           variants={cardVariants}
           whileHover={{ y: -6, scale: 1.02 }}
-          key={i} onClick={() => setSelected(p)}
           >
             <Img src={p.image} alt={p.title} />
 
@@ -56,6 +57,7 @@ const Projects = () => {
               ))}
             </TagList>
           </BlogCard>
+          </Link>
         ))}
       </GridContainer>
 

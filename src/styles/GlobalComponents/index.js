@@ -278,3 +278,92 @@ export const LinkIconImg = styled.div`
     height: ${({ large }) => large ? '32px' : '16px'};
   }
 `
+export const NavWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+`;
+
+export const NavLink = styled.a`
+  color: #9cc9e3;
+  text-decoration: none;
+  font-size: 1.6rem;
+  max-width: 45%;
+`;
+
+
+// Case Study Page Styles
+export const CaseStudyWrapper = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+`;
+export const HeroImage = styled.img`
+  width: 100%;
+  border-radius: 20px;
+  margin: 3rem 0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+`;
+
+export const ContentGrid = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  margin-top: 3rem;
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const InfoBlock = styled.div`
+  margin-bottom: 3rem;
+
+  h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #9cc9e3;
+  }
+
+  p {
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: #e4e6e7;
+  }
+`;
+
+export const Sidebar = styled.aside`
+  background: #0f1624;
+  border-radius: 16px;
+  padding: 2.5rem;
+  height: fit-content;
+`;
+
+export const SidebarTitle = styled.h4`
+  margin-bottom: 1.5rem;
+  color: #d0bb57;
+`;
+
+export const CTASection = styled.div`
+  margin: 5rem 0;
+  padding: 3rem;
+  background: linear-gradient(135deg, #1a2238, #0f1624);
+  border-radius: 20px;
+  text-align: center;
+`;
+
+export const TagList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.8rem;
+  padding: 0;
+`;
+
+export const Tag = styled.li`
+  background: rgba(156, 201, 227, 0.12);
+  color: #9cc9e3;
+  font-size: 1.4rem;
+  padding: 0.6rem 1rem;
+  border-radius: 14px;
+  text-align: center;
+`;
