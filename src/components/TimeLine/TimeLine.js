@@ -67,10 +67,9 @@ const Timeline = () => {
     <Section id="about">
       <SectionTitle>About Me</SectionTitle>
       <SectionText>
-              "As a seasoned full-stack web developer,
-              my expertise spans a wide spectrum of technologies, including Node,
-              .NET, Kotlin, React, React Native, Angular, and Docker. I'm proficient in both SQL and NoSQL databases. My primary focus is on e-commerce solutions, aiding companies of all sizes in enhancing their online presence, optimizing processes, and boosting sales.
-              My goal is to empower businesses with custom web solutions that drive growth and efficiency."
+              "Soy un desarrollador Full-Stack apasionado por crear soluciones web escalables y APIs robustas.
+              Con experiencia en tecnologías front-end y back-end, me especializo en construir aplicaciones eficientes y fáciles de mantener.
+              Me encanta enfrentar desafíos técnicos y transformar ideas en productos funcionales que impulsan el crecimiento empresarial."
       </SectionText>
       <CarouselContainer ref={carouselRef} onScroll={handleScroll}>
         <>

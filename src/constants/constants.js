@@ -104,9 +104,9 @@ export const projects = [
 ];
 
 export const TimeLineData = [
-    { year: 2021, text: "Started my journey with small freelance projects and hands-on practice." },
-    {year:2022, text:"Expanded my skills by learning new technologies and contributing to various projects."},
-    {year:2023, text:"Joined a company as a software engineer while continuing to grow through personal and freelance work."},
-    {year:2024, text:"Delivered frontend and backend solutions as a consultant in diffents industries while also managing freelance projects."},
-    {year:2025, text: "Continuing my consulting work, contributing to complex software solutions in the banking sector and expanding my expertise across new technologies."} 
+    { year: 2021, text: "Comence mi carrera profesional como desarrollador web." },
+    {year:2022, text:"Trabajé en varios proyectos freelance, desarrollando aplicaciones web y móviles para clientes diversos."},
+    {year:2023, text:"Me uni a una empresa de consultoria tecnológica para desarrollar soluciones tecnológicas para empresas."},
+    {year:2024, text:"Lleve a cabo proyectos complejos en diferentes industrias, mejorando la infraestructura tecnológica y optimizando procesos mediante soluciones personalizadas."},
+    {year:2025, text: "Continue especializándome en desarrollo full-stack y ampliando mi experiencia en tecnologías emergentes."}, 
 ];

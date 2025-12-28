@@ -27,7 +27,7 @@ const Footer = () => {
       </LinkList>
       <SocialIconsContainer>
         <CompanyContainer>
-          <Slogan>Full-stack solutions, limitless possibilities.</Slogan>
+          <Slogan>Soluciones Tecnologicas, hechas con dedicación</Slogan>
         </CompanyContainer>
         <SocialContainer>
           <SocialIcons href="https://github.com/RiandryDevelop" target="_blank">

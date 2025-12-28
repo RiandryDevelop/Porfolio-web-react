@@ -1,12 +1,14 @@
-import Theme from '../styles/theme';
+import Theme from "../styles/Theme";
+import { SearchProvider } from "../context/SearchContext";
 
-export default function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <SearchProvider>
       <Theme>
         <Component {...pageProps} />
       </Theme>
-    </>
+    </SearchProvider>
   );
 }
- 
+
+export default MyApp;

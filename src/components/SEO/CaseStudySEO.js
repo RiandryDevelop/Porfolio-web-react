@@ -19,7 +19,7 @@ const CaseStudySEO = ({ title, description, image, slug }) => {
   return (
     <Head>
       {/* Basic SEO */}
-      <title>{title} | Case Study – Riandry Connor</title>
+      <title>{title} | Caso de estudio – Riandry Connor</title>
       <meta name="description" content={description} />
 
       {/* Open Graph */}

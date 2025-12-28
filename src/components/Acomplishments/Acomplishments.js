@@ -8,16 +8,16 @@ import {
 import { Box, Boxes, BoxNum, BoxText } from "./AcomplishmentsStyles";
 
 const data = [
-  { number: +3, text: "years of working experience" },
-  { number: +6, text: "projects with bussines" },
-  { number: +8, text: "Collaborations with other developers" },
-  { number: +6, text: "Certifications in different technologies" },
-  ,
+  { number: +3, text: "años de experiencia" },
+  { number: +6, text: "proyectos con empresas" },
+  { number: +8, text: "Colaboraciones con otros desarrolladores" },
+  { number: +8, text: "Certificaciones en diferentes tecnologías" },
+  { number: +8, text: "Proyectos de desarrollo full-stack" },
 ];
 
 const Acomplishments = () => (
   <Section>
-    <SectionTitle>Personal Achievements</SectionTitle>
+    <SectionTitle>Logros Profesionales</SectionTitle>
     <Boxes>
       {data.map((card, index) => (
         <Box key={index}>

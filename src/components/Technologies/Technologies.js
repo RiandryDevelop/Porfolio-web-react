@@ -17,12 +17,12 @@ import {
 const Technologies = () => (
   <Section id="tech">
     <SectionDivider divider />
-    <SectionTitle>Technologies</SectionTitle>
+    <SectionTitle>Tecnologias</SectionTitle>
     <SectionText>
-            "I possess extensive experience working with a diverse array of technologies
-            in the web development domain, encompassing both front-end, back-end,
-            and design aspects, along with mobile development and the integration
-            of DevOps practices."
+            "He trabajado con una variedad de tecnologías en el desarrollo web y móvil,
+            incluyendo frameworks de front-end como React y Angular, así como tecnologías de back-end como Node.js y .Net.
+            También tengo experiencia en el desarrollo de aplicaciones móviles utilizando Kotlin para Android y React Native para aplicaciones híbridas.
+            Además, estoy familiarizado con herramientas de diseño UI/UX como Figma para crear interfaces de usuario atractivas y funcionales."
     </SectionText>
     <List>
       <ListItem>
@@ -33,7 +33,7 @@ const Technologies = () => (
         <ListContainer>
           <ListTitle>Front-End</ListTitle>
           <ListParagraph>
-            Experience with <br />
+            Experiencia con<br />
             Reactjs,Angular
           </ListParagraph>
         </ListContainer>
@@ -47,7 +47,7 @@ const Technologies = () => (
         <ListContainer>
           <ListTitle>Back-End</ListTitle>
           <ListParagraph>
-            Experience with <br />
+            Experiencia con <br />
             Nodejs,.Net
           </ListParagraph>
         </ListContainer>
@@ -59,8 +59,8 @@ const Technologies = () => (
         <ListContainer>
           <ListTitle>UI/UX</ListTitle>
           <ListParagraph>
-            Experience with <br />
-            tools like Figma
+            Experiencia con <br />
+            herramientas como Figma
           </ListParagraph>
         </ListContainer>
             </ListItem>
@@ -71,7 +71,7 @@ const Technologies = () => (
         <ListContainer>
         <ListTitle>MOBILE</ListTitle>
         <ListParagraph>
-         Experience with <br />
+         Experiencia con <br />
          Kotlin(android)/ReactNative(Hibrid) 
          </ListParagraph>
          </ListContainer>

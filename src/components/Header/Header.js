@@ -1,55 +1,89 @@
 import Link from "next/link";
 import React from "react";
-import { AiFillGithub, AiFillInstagram, AiFillLinkedin } from "react-icons/ai";
+import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 import { DiCssdeck } from "react-icons/di";
+import { useSearch } from "../../context/SearchContext";
+
 
 import {
   Container,
-  Div1,
-  Div2,
-  Div3,
+  Logo,
+  NavMenu,
+  NavItem,
   NavLink,
+  SearchWrapper,
+  SearchInput,
+  Actions,
   SocialIcons,
 } from "./HeaderStyles";
 
-const Header = () => (
-  <Container>
-    <Div1>
+const Header = () => {
+
+  const { query, setQuery } = useSearch();
+
+  return (
+
+<Container>
+    {/* Logo */}
+    <Logo>
       <Link href="/">
-        <a style={{ display: "flex", alignItems: "center", color: "white" }}>
-          <DiCssdeck size="3rem" /> <span>Portfolio Full-Stack</span>
+        <a>
+          <DiCssdeck size="2.6rem" />
+          <span>Riandry Connor</span>
         </a>
       </Link>
-    </Div1>
-    <Div2>
-      <li>
-        <Link href="#projects">
-          <NavLink>Projects</NavLink>
+    </Logo>
+
+    {/* Navigation */}
+    <NavMenu>
+      <NavItem>
+        <Link href="#projects" passHref>
+          <NavLink>Projectos</NavLink>
         </Link>
-      </li>
-      <li>
-        <Link href="#tech">
-          <NavLink>Technologies</NavLink>
+      </NavItem>
+
+      <NavItem>
+        <Link href="#tech" passHref>
+          <NavLink>Tecnologias</NavLink>
         </Link>
-      </li>
-      <li>
-        <Link href="#about">
-          <NavLink>About</NavLink>
+      </NavItem>
+
+      <NavItem>
+        <Link href="#about" passHref>
+          <NavLink>Sobre Mi</NavLink>
         </Link>
-      </li>
-    </Div2>
-    <Div3>
-      <SocialIcons href="https://github.com/RiandryDevelop" target="_blank">
-        <AiFillGithub size="3rem" />
+      </NavItem>
+
+      {/* 🔍 Search */}
+      <SearchWrapper>
+      <SearchInput
+      placeholder="Buscar estudios de caso..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+    />
+      </SearchWrapper>
+    </NavMenu>
+
+    {/* Social / Actions */}
+    <Actions>
+      <SocialIcons
+        href="https://github.com/RiandryDevelop"
+        target="_blank"
+        aria-label="GitHub"
+      >
+        <AiFillGithub size="2.4rem" />
       </SocialIcons>
+
       <SocialIcons
         href="https://www.linkedin.com/in/riandry-connor-b71275209/"
         target="_blank"
+        aria-label="LinkedIn"
       >
-        <AiFillLinkedin size="3rem" />
+        <AiFillLinkedin size="2.4rem" />
       </SocialIcons>
-    </Div3>
+    </Actions>
   </Container>
-);
+  );
+};
 
 export default Header;
