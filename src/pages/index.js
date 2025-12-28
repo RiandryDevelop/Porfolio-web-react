@@ -6,9 +6,18 @@ import Technologies from '../components/Technologies/Technologies';
 import Timeline from '../components/TimeLine/TimeLine';
 import { Layout } from '../layout/Layout';
 import { Section } from '../styles/GlobalComponents';
+import Head from 'next/head';
 
 const Home = () => {
   return (
+    <>
+      <Head>
+        <title>Full-Stack Developer | Riandry Connor</title>
+        <meta
+          name="description"
+          content="Full-Stack Developer especializado en productos web escalables, APIs robustas y aplicaciones móviles."
+        />
+      </Head>
     <Layout>
       <Section grid>
         <Hero />
@@ -19,6 +28,7 @@ const Home = () => {
       <Timeline />
       <Acomplishments />
     </Layout>
+    </>
   );
 };
 

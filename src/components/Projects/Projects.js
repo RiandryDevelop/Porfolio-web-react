@@ -14,6 +14,7 @@ import {
 import { Section, SectionTitle} from "../../styles/GlobalComponents";
 import CTAButton from "../../styles/GlobalComponents/CTAButton";
 import { cardVariants } from "../../styles/animations/variants";
+import CaseStudySEO from "../SEO/CaseStudySEO";
 import { projects } from "../../constants/constants";
 import Modal from "../Modal/Modal";
 
@@ -63,6 +64,12 @@ const Projects = () => {
 <Modal isOpen={!!selected} onClose={() => setSelected(null)}>
   {selected && (
     <>
+      <CaseStudySEO
+      title={selected.title}
+      description={selected.result}
+      image={selected.image}
+      slug={selected.slug}
+    />
       <HeaderThree title>{selected.title}</HeaderThree>
       <Hr />
 

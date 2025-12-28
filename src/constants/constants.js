@@ -2,6 +2,7 @@ export const projects = [
   {
     id: 0,
     title: "Instagram Business Scraper API",
+    slug: "instagram-business-scraper-api",
     image: "/images/InstagramScraperAPI_edit.PNG",
 
     problem:
@@ -30,7 +31,7 @@ export const projects = [
     id: 1,
     title: "Sismo App",
     image: "/images/SismoApp_edit.PNG",
-
+    slug: "sismo-app",
     problem:
       "Centralizar y visualizar información sísmica global en tiempo real con una interfaz rápida y fácil de usar.",
 
@@ -57,7 +58,7 @@ export const projects = [
     id: 2,
     title: "Library App (Mobile)",
     image: "/images/LibraryAPP_edit.PNG",
-
+    slug: "library-app-mobile",
     problem:
       "Usuarios necesitaban una forma simple y segura de gestionar su biblioteca personal desde dispositivos móviles.",
 
@@ -76,6 +77,7 @@ export const projects = [
     id: 3,
     title: "The Roulette Game",
     image: "/images/RouletteGame_edit.PNG",
+    slug: "the-roulette-game",
 
     problem:
       "Crear una experiencia de juego web interactiva donde los usuarios puedan gestionar saldo y realizar apuestas en tiempo real.",
