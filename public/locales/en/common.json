@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "projects": "Case Studies",
+    "tech": "Technologies",
+    "about": "About Me",
+    "searchPlaceholder": "Search case studies"
+  },
+
+  "hero": {
+    "title": "Full-Stack Developer",
+    "subtitle": "My name is Riandry Connor and I build scalable web applications, robust APIs, and modern digital solutions for startups and companies.",
+    "ctaProjects": "View projects",
+    "ctaCV": "Download CV"
+  },
+
+  "caseStudies": {
+    "title": "Case Studies",
+    "resultsFor": "Results for",
+    "noResults": "No case studies match your search",
+    "problem": "Problem",
+    "solution": "Solution",
+    "result": "Result",
+    "stack": "Tech stack",
+    "ctaSimilar": "I want a similar project",
+    "prev": "Previous",
+    "next": "Next",
+    "loading": "Loading..."
+  },
+
+  "technologies": {
+    "title": "Technologies",
+    "subtitle": "Technologies I have worked with",
+    "frontendDesc": "Experience with React, Angular and modern frameworks",
+    "backendDesc": "Experience with Node.js, .NET, Ruby on Rails and APIs",
+    "mobileDesc": "Kotlin (Android) and React Native",
+    "uiuxDesc": "Interface design using Figma"
+  },
+
+  "about": {
+    "title": "About Me",
+    "description": "I am a Full-Stack Developer passionate about building scalable web solutions and robust APIs. I focus on turning ideas into functional products that drive business growth."
+  },
+
+  "timeline": {
+    "title": "My journey",
+    "items": {
+      "2021": "Started my career with small freelance projects and continuous practice.",
+      "2022": "Expanded my skill set by learning new technologies and collaborating on various projects.",
+      "2023": "Joined a company as a software engineer while continuing personal projects.",
+      "2024": "Delivered frontend and backend solutions as a consultant across multiple industries.",
+      "2025": "Continuing to work on complex solutions and expanding my technical expertise."
+    }
+  },
+
+  "stats": {
+    "years": "Years of experience",
+    "projects": "Completed projects",
+    "collabs": "Collaborations",
+    "certs": "Certifications"
+  },
+
+  "footer": {
+    "title": "Technology solutions built with dedication",
+    "contact": "Contact",
+    "email": "Email",
+    "rights": "All rights reserved"
+  },
+
+  "seo": {
+    "defaultTitle": "Full-Stack Developer | Riandry Connor",
+    "defaultDescription": "Full-Stack Developer specializing in web applications, APIs, and scalable solutions."
+  }
+}

@@ -6,25 +6,26 @@ import {
 } from "../../styles/GlobalComponents";
 import Button from "../../styles/GlobalComponents/Button";
 import { LeftSection, ButtonsWrapper } from "./HeroStyles";
+import { useTranslation } from "next-i18next";
 
-const Hero = () => (
+const Hero = () => {
+ const { t } = useTranslation("common");
+
+
+  return(
   <Section row nopadding>
     <LeftSection>
       <SectionTitle main>
-        Construyo productos web <br />
-        escalables y APIs listas <br />
-        para producción
+        {t("hero.title")}
       </SectionTitle>
 
       <SectionText>
-        Soy <strong>Riandry Connor</strong>, Full-Stack Developer con experiencia
-        creando aplicaciones web, backends robustos y soluciones móviles
-        para startups y empresas que necesitan crecer sin problemas técnicos.
+       {t("hero.subtitle")}
       </SectionText>
 
       <ButtonsWrapper>
         <Button primary>
-          <a href="#projects">Ver proyectos</a>
+          <a href="#projects">{t("hero.ctaProjects")}</a>
         </Button>
 
         <Button>
@@ -33,12 +34,13 @@ const Hero = () => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            Descargar CV
+           {t("hero.ctaCV")}
           </a>
         </Button>
       </ButtonsWrapper>
     </LeftSection>
   </Section>
-);
+  );
+};
 
 export default Hero;

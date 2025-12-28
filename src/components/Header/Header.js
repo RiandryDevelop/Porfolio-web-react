@@ -3,6 +3,9 @@ import React from "react";
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 import { DiCssdeck } from "react-icons/di";
 import { useSearch } from "../../context/SearchContext";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+
 
 
 import {
@@ -15,11 +18,23 @@ import {
   SearchInput,
   Actions,
   SocialIcons,
+  LangSwitcher,
+  LangButton
 } from "./HeaderStyles";
 
 const Header = () => {
 
   const { query, setQuery } = useSearch();
+  const { t } = useTranslation("common");
+
+  const router = useRouter();
+const { locale, asPath } = router;
+
+const changeLanguage = (lng) => {
+  router.push(asPath, asPath, { locale: lng });
+};
+
+
 
   return (
 
@@ -38,26 +53,26 @@ const Header = () => {
     <NavMenu>
       <NavItem>
         <Link href="#projects" passHref>
-          <NavLink>Projectos</NavLink>
+          <NavLink>{t("nav.projects")}</NavLink>
         </Link>
       </NavItem>
 
       <NavItem>
         <Link href="#tech" passHref>
-          <NavLink>Tecnologias</NavLink>
+          <NavLink>{t("nav.tech")}</NavLink>
         </Link>
       </NavItem>
 
       <NavItem>
         <Link href="#about" passHref>
-          <NavLink>Sobre Mi</NavLink>
+          <NavLink>{t("nav.about")}</NavLink>
         </Link>
       </NavItem>
 
       {/* 🔍 Search */}
       <SearchWrapper>
       <SearchInput
-      placeholder="Buscar estudios de caso..."
+      placeholder={t("nav.searchPlaceholder")}
       value={query}
       onChange={(e) => setQuery(e.target.value)}
     />
@@ -82,6 +97,22 @@ const Header = () => {
         <AiFillLinkedin size="2.4rem" />
       </SocialIcons>
     </Actions>
+    <LangSwitcher>
+  <LangButton
+    active={locale === "es"}
+    onClick={() => changeLanguage("es")}
+  >
+    ES
+  </LangButton>
+
+  <LangButton
+    active={locale === "en"}
+    onClick={() => changeLanguage("en")}
+  >
+    EN
+  </LangButton>
+</LangSwitcher>
+
   </Container>
   );
 };

@@ -16,9 +16,11 @@ import { Section, SectionTitle } from "../../styles/GlobalComponents";
 import { cardVariants } from "../../styles/animations/variants";
 import { projects } from "../../constants/constants";
 import { useSearch } from "../../context/SearchContext";
+import { useTranslation } from "next-i18next";
 
 const Projects = () => {
   const { query } = useSearch();
+   const { t } = useTranslation("common");
 
   const filteredProjects = useMemo(() => {
     const searchTrimmed = (query || "").trim().toLowerCase();
@@ -39,18 +41,18 @@ const Projects = () => {
 
   return (
     <Section nopadding id="projects">
-      <SectionTitle main>Casos de estudio</SectionTitle>
+      <SectionTitle main>{t("caseStudies.title")}</SectionTitle>
 
       {isSearching && (
         <p style={{ color: "#9cc9e3", marginBottom: "2rem" }}>
-          Resultados para “{query}”
+          {t("caseStudies.resultsFor")} “{query}”
         </p>
       )}
 
       {/* Mensaje de no resultados corregido */}
       {filteredProjects.length === 0 && (
         <p style={{ opacity: 0.6, textAlign: 'center', marginTop: '2rem' }}>
-          No se encontraron casos de estudio que coincidan con "{query}".
+          {t("caseStudies.noResults")} "{query}".
         </p>
       )}
 
@@ -75,7 +77,7 @@ const Projects = () => {
                   <Hr />
                 </TitleContent>
                 <CardInfo>
-                  <strong>Problema:</strong> {p.problem}
+                  <strong>{t("caseStudies.problem")}:</strong> {p.problem}
                 </CardInfo>
                 <TagList>
                   {p.tags.map((t, i) => (

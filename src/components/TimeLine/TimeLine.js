@@ -18,12 +18,15 @@ import {
   SectionTitle,
 } from "../../styles/GlobalComponents";
 import { TimeLineData } from "../../constants/constants";
+import { useTranslation } from "next-i18next";
 
 const TOTAL_CAROUSEL_COUNT = TimeLineData.length;
 
 const Timeline = () => {
   const [activeItem, setActiveItem] = useState(0);
   const carouselRef = useRef();
+
+  const {t} = useTranslation("common");
 
   const scroll = (node, left) => {
     return node.scrollTo({ left, behavior: "smooth" });
@@ -65,11 +68,9 @@ const Timeline = () => {
 
   return (
     <Section id="about">
-      <SectionTitle>About Me</SectionTitle>
+      <SectionTitle>{t("timeline.title")}</SectionTitle>
       <SectionText>
-              "Soy un desarrollador Full-Stack apasionado por crear soluciones web escalables y APIs robustas.
-              Con experiencia en tecnologías front-end y back-end, me especializo en construir aplicaciones eficientes y fáciles de mantener.
-              Me encanta enfrentar desafíos técnicos y transformar ideas en productos funcionales que impulsan el crecimiento empresarial."
+              {t("about.description")}
       </SectionText>
       <CarouselContainer ref={carouselRef} onScroll={handleScroll}>
         <>

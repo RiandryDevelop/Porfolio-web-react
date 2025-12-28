@@ -93,3 +93,26 @@ export const SocialIcons = styled.a`
     transform: translateY(-1px);
   }
 `;
+
+
+export const LangSwitcher = styled.div`
+  display: flex;
+  gap: 0.4rem;
+  margin-left: 1rem;
+`;
+
+export const LangButton = styled.button`
+  background: ${({ active }) =>
+    active ? "rgba(156, 201, 227, 0.25)" : "transparent"};
+  color: ${({ active }) => (active ? "#9cc9e3" : "white")};
+  border: 1px solid rgba(156, 201, 227, 0.3);
+  border-radius: 10px;
+  padding: 0.3rem 0.7rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(156, 201, 227, 0.15);
+  }
+`;

@@ -7,6 +7,8 @@ import Timeline from '../components/TimeLine/TimeLine';
 import { Layout } from '../layout/Layout';
 import { Section } from '../styles/GlobalComponents';
 import Head from 'next/head';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 
 const Home = () => {
   return (
@@ -33,3 +35,11 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}

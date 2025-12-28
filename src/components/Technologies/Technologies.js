@@ -13,16 +13,17 @@ import {
   ListParagraph,
   ListTitle,
 } from "./TechnologiesStyles";
+import { useTranslation } from "next-i18next";
 
-const Technologies = () => (
-  <Section id="tech">
+const Technologies = () => {
+const {t} = useTranslation("common");
+
+ return(
+ <Section id="tech">
     <SectionDivider divider />
-    <SectionTitle>Tecnologias</SectionTitle>
+    <SectionTitle>{t("technologies.title")}</SectionTitle>
     <SectionText>
-            "He trabajado con una variedad de tecnologías en el desarrollo web y móvil,
-            incluyendo frameworks de front-end como React y Angular, así como tecnologías de back-end como Node.js y .Net.
-            También tengo experiencia en el desarrollo de aplicaciones móviles utilizando Kotlin para Android y React Native para aplicaciones híbridas.
-            Además, estoy familiarizado con herramientas de diseño UI/UX como Figma para crear interfaces de usuario atractivas y funcionales."
+      {t("technologies.subtitle")}
     </SectionText>
     <List>
       <ListItem>
@@ -33,8 +34,7 @@ const Technologies = () => (
         <ListContainer>
           <ListTitle>Front-End</ListTitle>
           <ListParagraph>
-            Experiencia con<br />
-            Reactjs,Angular
+            {t("technologies.frontendDesc")}
           </ListParagraph>
         </ListContainer>
       </ListItem>
@@ -47,8 +47,7 @@ const Technologies = () => (
         <ListContainer>
           <ListTitle>Back-End</ListTitle>
           <ListParagraph>
-            Experiencia con <br />
-            Nodejs,.Net
+            {t("technologies.backendDesc")}
           </ListParagraph>
         </ListContainer>
       </ListItem>
@@ -59,8 +58,7 @@ const Technologies = () => (
         <ListContainer>
           <ListTitle>UI/UX</ListTitle>
           <ListParagraph>
-            Experiencia con <br />
-            herramientas como Figma
+            {t("technologies.uiuxDesc")}
           </ListParagraph>
         </ListContainer>
             </ListItem>
@@ -71,14 +69,14 @@ const Technologies = () => (
         <ListContainer>
         <ListTitle>MOBILE</ListTitle>
         <ListParagraph>
-         Experiencia con <br />
-         Kotlin(android)/ReactNative(Hibrid) 
+         {t("technologies.mobileDesc")}
          </ListParagraph>
          </ListContainer>
        </ListItem>
     </List>
     <SectionDivider colorAlt />
   </Section>
-);
+ );
+};
 
 export default Technologies;

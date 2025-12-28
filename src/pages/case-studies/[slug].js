@@ -3,7 +3,7 @@ import Link from "next/link";
 import { projects } from "../../constants/constants";
 import CaseStudySEO from "../../components/SEO/CaseStudySEO";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-
+import { useTranslation } from "next-i18next";
 
 import { SectionTitle,
       CaseStudyWrapper,
@@ -24,13 +24,14 @@ import CTAButton from "../../styles/GlobalComponents/CTAButton";
 
 const CaseStudyPage = ({ project, prev, next }) => {
   const router = useRouter();
+   const { t } = useTranslation("common");
 
   if (router.isFallback) {
-    return <p>Loading...</p>;
+    return <p>{t("caseStudies.loading")}</p>;
   }
 
   if (!project) {
-    return <p>Case study not found</p>;
+    return <p>{t("caseStudies.noResults")}</p>;
   }
 
   return (
@@ -57,23 +58,23 @@ const CaseStudyPage = ({ project, prev, next }) => {
           <ContentGrid>
     <div>
       <InfoBlock>
-        <h3>Problema</h3>
+        <h3>{t("caseStudies.problem")}</h3>
         <p>{project.problem}</p>
       </InfoBlock>
 
       <InfoBlock>
-        <h3>Solución</h3>
+        <h3>{t("caseStudies.solution")}</h3>
         <p>{project.solution}</p>
       </InfoBlock>
 
       <InfoBlock>
-        <h3>Resultado</h3>
+        <h3>{t("caseStudies.result")}</h3>
         <p>{project.result}</p>
       </InfoBlock>
     </div>
 
     <Sidebar>
-      <SidebarTitle>Stack tecnológico</SidebarTitle>
+      <SidebarTitle>{t("caseStudies.stack")}</SidebarTitle>
       <TagList>
         {project.tags.map((tag, i) => (
           <Tag key={i}>{tag}</Tag>
@@ -86,7 +87,7 @@ const CaseStudyPage = ({ project, prev, next }) => {
     <CTAButton
       href={`mailto:riandrydevsoffers@gmail.com?subject=Proyecto similar a ${project.title}`}
     >
-      Quiero un proyecto similar
+      {t("caseStudies.ctaSimilar")}
     </CTAButton>
   </CTASection>
       
