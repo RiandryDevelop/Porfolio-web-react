@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"; // 1. Importamos useMemo
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import {
   BlogCard,
@@ -30,8 +30,11 @@ const Projects = () => {
     }
 
     return projects.filter((project) => {
-      const title = (project.title || "").toLowerCase();
-      const tags = (project.tags || []).join(" ").toLowerCase();
+      // const title = (project.title || "").toLowerCase();
+      // const tags = (project.tags || []).join(" ").toLowerCase();
+      const title = t(`Projects.items.${p.slug}.title`);
+const problem = t(`Projects.items.${p.slug}.problem`);
+
       
       return title.includes(searchTrimmed) || tags.includes(searchTrimmed);
     });
@@ -71,13 +74,13 @@ const Projects = () => {
                 variants={cardVariants}
                 whileHover={{ y: -6, scale: 1.02 }}
               >
-                <Img src={p.image} alt={p.title} />
+                <Img src={p.image} alt={t(`Projects.items.${p.slug}.title`)} />
                 <TitleContent>
-                  <HeaderThree title>{p.title}</HeaderThree>
+                  <HeaderThree title>{t(`Projects.items.${p.slug}.title`)}</HeaderThree>
                   <Hr />
                 </TitleContent>
                 <CardInfo>
-                  <strong>{t("caseStudies.problem")}:</strong> {p.problem}
+                  <strong>{t("caseStudies.problem")}:</strong> {t(`Projects.items.${p.slug}.problem`)}
                 </CardInfo>
                 <TagList>
                   {p.tags.map((t, i) => (

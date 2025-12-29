@@ -7,12 +7,45 @@
   },
 
   "hero": {
-    "title": "Full-Stack Developer",
+    "title": "Desarrollador Full-Stack",
     "subtitle": "Mi nombre es Riandry Connor y desarrollo soluciones web, APIs robustas y aplicaciones escalables para startups y empresas.",
     "ctaProjects": "Ver proyectos",
-    "ctaCV": "Descargar CV"
+    "ctaCV": "Descargar CV",
+    "CVurl": "/images/RiandryConnor_CV_ES.pdf"
   },
 
+  "Projects": {  
+    "items": {
+      "instagram-business-scraper-api": {
+        "title": "Instagram Business Scraper API",
+        "problem": "Empresas y agencias necesitaban automatizar la gestión de cuentas Instagram Business, acceder a datos públicos y controlar el uso de la plataforma de forma segura y escalable.",
+        "solution": "Desarrollé una API asíncrona con FastAPI que integra scraping de perfiles públicos, mensajería vía Facebook Graph API, autenticación JWT y control de planes mediante PayPal.",
+        "result": "Una arquitectura backend lista para SaaS, segura, escalable y preparada para integrarse en soluciones de marketing automation o CRM."
+      },
+
+      "sismo-app": {
+        "title": "Sismo App",
+        "problem": "Centralizar y visualizar información sísmica global en tiempo real con una interfaz rápida y fácil de usar.",
+        "solution": "Construí una aplicación full-stack con React, Vite y TailwindCSS en el frontend, y un backend en Ruby on Rails con API REST.",
+        "result": "Una plataforma moderna y escalable que ofrece información sísmica en tiempo real."
+      },
+
+      "library-app-mobile": {
+        "title": "Library App (Mobile)",
+        "problem": "Gestionar bibliotecas personales desde dispositivos móviles de forma segura.",
+        "solution": "Aplicación móvil multiplataforma con React Native y backend en Node.js + Firebase.",
+        "result": "App funcional con autenticación segura y CRUD completo."
+      },
+
+      "the-roulette-game": {
+        "title": "The Roulette Game",
+        "problem": "Crear una experiencia de juego web interactiva con apuestas en tiempo real.",
+        "solution": "Aplicación web con Vue 3, TypeScript y backend en .NET con SQL Server.",
+        "result": "Juego web completo con lógica de apuestas y arquitectura desplegable."
+      }
+    }
+  }
+,
   "caseStudies": {
     "title": "Casos de Estudio",
     "resultsFor": "Resultados para",
@@ -53,14 +86,15 @@
   },
 
   "stats": {
+    "title": "Logros Profesionales",
     "years": "Años de experiencia",
-    "projects": "Proyectos realizados",
+    "projects": "Proyectos realizados con empresas",
     "collabs": "Colaboraciones",
     "certs": "Certificaciones"
   },
 
   "footer": {
-    "title": "Soluciones tecnológicas hechas con dedicación",
+    "slogan": "Soluciones tecnológicas hechas con dedicación",
     "contact": "Contacto",
     "email": "Correo electrónico",
     "rights": "Todos los derechos reservados"
@@ -68,6 +102,7 @@
 
   "seo": {
     "defaultTitle": "Full-Stack Developer | Riandry Connor",
-    "defaultDescription": "Desarrollador Full-Stack especializado en aplicaciones web, APIs y soluciones escalables."
+    "defaultDescription": "Desarrollador Full-Stack especializado en aplicaciones web, APIs y soluciones escalables.",
+    "home":"Inicio"
   }
 }

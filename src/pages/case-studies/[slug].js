@@ -4,9 +4,12 @@ import { projects } from "../../constants/constants";
 import CaseStudySEO from "../../components/SEO/CaseStudySEO";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { SectionTitle,
-      CaseStudyWrapper,
+
+import {
+  SectionTitle,
+  CaseStudyWrapper,
   HeroImage,
   ContentGrid,
   InfoBlock,
@@ -16,15 +19,13 @@ import { SectionTitle,
   NavWrapper,
   NavLink,
   TagList,
-   Tag
- } from "../../styles/GlobalComponents";
+  Tag,
+} from "../../styles/GlobalComponents";
 import CTAButton from "../../styles/GlobalComponents/CTAButton";
-
-
 
 const CaseStudyPage = ({ project, prev, next }) => {
   const router = useRouter();
-   const { t } = useTranslation("common");
+  const { t } = useTranslation("common");
 
   if (router.isFallback) {
     return <p>{t("caseStudies.loading")}</p>;
@@ -34,86 +35,104 @@ const CaseStudyPage = ({ project, prev, next }) => {
     return <p>{t("caseStudies.noResults")}</p>;
   }
 
+  const { slug } = project;
+
+  const title = t(`Projects.items.${slug}.title`);
+  const problem = t(`Projects.items.${slug}.problem`);
+  const solution = t(`Projects.items.${slug}.solution`);
+  const result = t(`Projects.items.${slug}.result`);
+
   return (
     <CaseStudyWrapper>
       <CaseStudySEO
-        title={project.title}
-        description={project.result}
+        title={title}
+        description={result}
         image={project.image}
-        slug={project.slug}
+        slug={slug}
       />
-    <Breadcrumbs
-  items={[
-    { label: "Home", href: "/" },
-    { label: "Case Studies", href: "/#projects" },
-    { label: project.title },
-  ]}
-/>
 
-        <SectionTitle main>{project.title}</SectionTitle>
-         <HeroImage
-    src={project.image}
-    alt={project.title}
-  />
-          <ContentGrid>
-    <div>
-      <InfoBlock>
-        <h3>{t("caseStudies.problem")}</h3>
-        <p>{project.problem}</p>
-      </InfoBlock>
+      <Breadcrumbs
+        items={[
+          { label: t("seo.home"), href: "/" },
+          { label: t("caseStudies.title"), href: "/#projects" },
+          { label: title },
+        ]}
+      />
 
-      <InfoBlock>
-        <h3>{t("caseStudies.solution")}</h3>
-        <p>{project.solution}</p>
-      </InfoBlock>
+      <SectionTitle main>{title}</SectionTitle>
 
-      <InfoBlock>
-        <h3>{t("caseStudies.result")}</h3>
-        <p>{project.result}</p>
-      </InfoBlock>
-    </div>
+      <HeroImage src={project.image} alt={title} />
 
-    <Sidebar>
-      <SidebarTitle>{t("caseStudies.stack")}</SidebarTitle>
-      <TagList>
-        {project.tags.map((tag, i) => (
-          <Tag key={i}>{tag}</Tag>
-        ))}
-      </TagList>
-    </Sidebar>
-  </ContentGrid>
+      <ContentGrid>
+        <div>
+          <InfoBlock>
+            <h3>{t("caseStudies.problem")}</h3>
+            <p>{problem}</p>
+          </InfoBlock>
 
-  <CTASection>
-    <CTAButton
-      href={`mailto:riandrydevsoffers@gmail.com?subject=Proyecto similar a ${project.title}`}
-    >
-      {t("caseStudies.ctaSimilar")}
-    </CTAButton>
-  </CTASection>
-      
-<NavWrapper>
-  {prev && (
-    <Link href={`/case-studies/${prev.slug}`} passHref>
-      <NavLink>← {prev.title}</NavLink>
-    </Link>
-  )}
+          <InfoBlock>
+            <h3>{t("caseStudies.solution")}</h3>
+            <p>{solution}</p>
+          </InfoBlock>
 
-  {next && (
-    <Link href={`/case-studies/${next.slug}`} passHref>
-      <NavLink>{next.title} →</NavLink>
-    </Link>
-  )}
-</NavWrapper>
- </CaseStudyWrapper>
+          <InfoBlock>
+            <h3>{t("caseStudies.result")}</h3>
+            <p>{result}</p>
+          </InfoBlock>
+        </div>
+
+        <Sidebar>
+          <SidebarTitle>{t("caseStudies.stack")}</SidebarTitle>
+          <TagList>
+            {project.tags.map((tag, i) => (
+              <Tag key={i}>{tag}</Tag>
+            ))}
+          </TagList>
+        </Sidebar>
+      </ContentGrid>
+
+      <CTASection>
+        <CTAButton
+          href={`mailto:riandrydevsoffers@gmail.com?subject=Proyecto similar a ${title}`}
+        >
+          {t("caseStudies.ctaSimilar")}
+        </CTAButton>
+      </CTASection>
+
+      <NavWrapper>
+        {prev && (
+          <Link href={`/case-studies/${prev.slug}`} passHref>
+            <NavLink>
+              ← {t(`Projects.items.${prev.slug}.title`)}
+            </NavLink>
+          </Link>
+        )}
+
+        {next && (
+          <Link href={`/case-studies/${next.slug}`} passHref>
+            <NavLink>
+              {t(`Projects.items.${next.slug}.title`)} →
+            </NavLink>
+          </Link>
+        )}
+      </NavWrapper>
+    </CaseStudyWrapper>
   );
 };
 
 export default CaseStudyPage;
 
-export async function getStaticPaths() {
-  const paths = projects.map((project) => ({
-    params: { slug: project.slug },
-  }));
+export async function getStaticPaths({ locales }) {
+  const paths = [];
+
+  projects.forEach((project) => {
+    locales.forEach((locale) => {
+      paths.push({
+        params: { slug: project.slug },
+        locale,
+      });
+    });
+  });
 
   return {
     paths,
@@ -121,7 +140,7 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const index = projects.findIndex(
     (p) => p.slug === params.slug
   );
@@ -132,10 +151,10 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common"])),
       project,
       prev,
       next,
     },
   };
 }
-

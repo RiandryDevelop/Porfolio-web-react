@@ -1,5 +1,6 @@
 import React from "react";
 import { AiFillGithub, AiFillInstagram, AiFillLinkedin } from "react-icons/ai";
+import { useTranslation } from "next-i18next";
 
 import { SocialIcons } from "../Header/HeaderStyles";
 import {
@@ -15,11 +16,12 @@ import {
 } from "./FooterStyles";
 
 const Footer = () => {
+  const {t} = useTranslation("common");
   return (
     <FooterWrapper>
       <LinkList>
         <LinkColumn>
-          <LinkTitle>Email</LinkTitle>
+          <LinkTitle>{t("footer.email")}</LinkTitle>
           <LinkItem href="mailto:riandrydevsoffers@gmail.com">
             riandrydevsoffers@gmail.com
           </LinkItem>
@@ -27,7 +29,7 @@ const Footer = () => {
       </LinkList>
       <SocialIconsContainer>
         <CompanyContainer>
-          <Slogan>Soluciones Tecnologicas, hechas con dedicación</Slogan>
+          <Slogan>{t("footer.slogan")}</Slogan>
         </CompanyContainer>
         <SocialContainer>
           <SocialIcons href="https://github.com/RiandryDevelop" target="_blank">

@@ -10,9 +10,42 @@
     "title": "Full-Stack Developer",
     "subtitle": "My name is Riandry Connor and I build scalable web applications, robust APIs, and modern digital solutions for startups and companies.",
     "ctaProjects": "View projects",
-    "ctaCV": "Download CV"
+    "ctaCV": "Download CV",
+    "CVurl": "/images/RiandryConnor_CV_EN.pdf"   
   },
+  "Projects": {
+    "items": {
+      "instagram-business-scraper-api": {
+        "title": "Instagram Business Scraper API",
+        "problem": "Companies and agencies needed to automate Instagram Business account management and securely access public data.",
+        "solution": "I built an asynchronous FastAPI backend integrating public profile scraping, Facebook Graph API messaging, JWT authentication, and PayPal plan control.",
+        "result": "A SaaS-ready backend architecture that is secure, scalable, and suitable for marketing automation or CRM solutions."
+      },
 
+      "sismo-app": {
+        "title": "Sismo App",
+        "problem": "Centralizing and visualizing global seismic data in real time.",
+        "solution": "A full-stack solution using React, Vite, TailwindCSS, and a Ruby on Rails REST API backend.",
+        "result": "A modern, scalable platform delivering real-time seismic information."
+      },
+
+      "library-app-mobile": {
+        "title": "Library App (Mobile)",
+        "problem": "Users needed a simple and secure way to manage personal libraries on mobile devices.",
+        "solution": "Cross-platform React Native app connected to a Node.js + Firebase backend.",
+        "result": "A secure mobile app with full CRUD functionality."
+      },
+
+      "the-roulette-game": {
+        "title": "The Roulette Game",
+        "problem": "Building an interactive web-based casino experience with real-time betting.",
+        "solution": "Vue 3 + TypeScript frontend with a .NET backend and SQL Server, Docker-ready.",
+        "result": "A complete web game with betting logic and persistent data storage."
+      }
+    }
+  }
+
+,
   "caseStudies": {
     "title": "Case Studies",
     "resultsFor": "Results for",
@@ -53,14 +86,15 @@
   },
 
   "stats": {
+    "title": "Professional Achievements",
     "years": "Years of experience",
-    "projects": "Completed projects",
+    "projects": "Completed projects with enterprises",
     "collabs": "Collaborations",
     "certs": "Certifications"
   },
 
   "footer": {
-    "title": "Technology solutions built with dedication",
+    "slogan": "Technology solutions built with dedication",
     "contact": "Contact",
     "email": "Email",
     "rights": "All rights reserved"
@@ -68,6 +102,7 @@
 
   "seo": {
     "defaultTitle": "Full-Stack Developer | Riandry Connor",
-    "defaultDescription": "Full-Stack Developer specializing in web applications, APIs, and scalable solutions."
+    "defaultDescription": "Full-Stack Developer specializing in web applications, APIs, and scalable solutions.",
+    "home":"Home"
   }
 }

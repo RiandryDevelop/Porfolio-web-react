@@ -30,7 +30,7 @@ const Hero = () => {
 
         <Button>
           <a
-            href="/images/RiandryConnorCV_EN.pdf"
+            href={t("hero.CVurl")}
             target="_blank"
             rel="noopener noreferrer"
           >

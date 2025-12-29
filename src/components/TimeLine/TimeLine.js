@@ -20,13 +20,22 @@ import {
 import { TimeLineData } from "../../constants/constants";
 import { useTranslation } from "next-i18next";
 
-const TOTAL_CAROUSEL_COUNT = TimeLineData.length;
+let TOTAL_CAROUSEL_COUNT;
 
 const Timeline = () => {
   const [activeItem, setActiveItem] = useState(0);
   const carouselRef = useRef();
 
   const {t} = useTranslation("common");
+
+  const timelineItems = t("timeline.items", { returnObjects: true });
+  const timelineArray = Object.entries(timelineItems).map(
+  ([year, text]) => ({
+    year,
+    text,
+  })
+);
+  TOTAL_CAROUSEL_COUNT = timelineArray.length;
 
   const scroll = (node, left) => {
     return node.scrollTo({ left, behavior: "smooth" });
@@ -37,7 +46,7 @@ const Timeline = () => {
 
     if (carouselRef.current) {
       const scrollLeft = Math.floor(
-        carouselRef.current.scrollWidth * 0.7 * (i / TimeLineData.length)
+        carouselRef.current.scrollWidth * 0.7 * (i / timelineArray.length)
       );
 
       scroll(carouselRef.current, scrollLeft);
@@ -49,7 +58,7 @@ const Timeline = () => {
       const index = Math.round(
         (carouselRef.current.scrollLeft /
           (carouselRef.current.scrollWidth * 0.7)) *
-          TimeLineData.length
+          timelineArray.length
       );
 
       setActiveItem(index);
@@ -74,7 +83,7 @@ const Timeline = () => {
       </SectionText>
       <CarouselContainer ref={carouselRef} onScroll={handleScroll}>
         <>
-          {TimeLineData.map((item, index) => (
+          {timelineArray.map((item, index) => (
             <CarouselMobileScrollNode
               key={index}
               final={index === TOTAL_CAROUSEL_COUNT - 1}
@@ -127,7 +136,7 @@ const Timeline = () => {
         </>
       </CarouselContainer>
       <CarouselButtons>
-        {TimeLineData.map((item, index) => {
+        {timelineArray.map((item, index) => {
           return (
             <CarouselButton
               key={index}
@@ -139,7 +148,8 @@ const Timeline = () => {
               <CarouselButtonDot active={activeItem} />
             </CarouselButton>
           );
-        })}
+        })} 
+
       </CarouselButtons>
       <SectionDivider />
     </Section>
