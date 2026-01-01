@@ -1,8 +1,6 @@
 import Link from "next/link";
-import React from "react";
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
 import { DiCssdeck } from "react-icons/di";
-import { useSearch } from "../../context/SearchContext";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
@@ -14,8 +12,6 @@ import {
   NavMenu,
   NavItem,
   NavLink,
-  SearchWrapper,
-  SearchInput,
   Actions,
   SocialIcons,
   LangSwitcher,
@@ -23,8 +19,6 @@ import {
 } from "./HeaderStyles";
 
 const Header = () => {
-
-  const { query, setQuery } = useSearch();
   const { t } = useTranslation("common");
 
   const router = useRouter();
@@ -68,15 +62,6 @@ const changeLanguage = (lng) => {
           <NavLink>{t("nav.about")}</NavLink>
         </Link>
       </NavItem>
-
-      {/* 🔍 Search */}
-      <SearchWrapper>
-      <SearchInput
-      placeholder={t("nav.searchPlaceholder")}
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-    />
-      </SearchWrapper>
     </NavMenu>
 
     {/* Social / Actions */}

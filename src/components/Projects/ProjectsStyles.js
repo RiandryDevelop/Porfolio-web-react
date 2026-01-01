@@ -47,6 +47,29 @@ export const TitleContent = styled.div`
 `;
 
 
+export const SearchWrapper = styled.div`
+  position: relative;
+`;
+
+export const SearchInput = styled.input`
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1.8rem;
+  color: white;
+  width: 280px;
+
+  &:focus {
+    outline: none;
+    border-color: #9cc9e3;
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+  }
+`;
+
 // export const HeaderThree = styled.h3`
 //   font-weight: 500;
 //   letter-spacing: 2px;

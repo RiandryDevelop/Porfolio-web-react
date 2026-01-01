@@ -10,6 +10,8 @@ import {
   TagList,
   TitleContent,
   Img,
+  SearchWrapper,
+  SearchInput
 } from "./ProjectsStyles";
 import Link from "next/link";
 import { Section, SectionTitle } from "../../styles/GlobalComponents";
@@ -19,32 +21,45 @@ import { useSearch } from "../../context/SearchContext";
 import { useTranslation } from "next-i18next";
 
 const Projects = () => {
-  const { query } = useSearch();
+const { query, setQuery } = useSearch();
   const { t } = useTranslation("common");
 
   const filteredProjects = useMemo(() => {
-    const searchTrimmed = (query || "").trim().toLowerCase();
+  const searchTrimmed = (query || "").trim().toLowerCase();
 
-    if (!searchTrimmed) {
-      return projects;
-    }
+  if (!searchTrimmed) return projects;
 
-    return projects.filter((project) => {
-      // const title = (project.title || "").toLowerCase();
-      // const tags = (project.tags || []).join(" ").toLowerCase();
-      const title = t(`Projects.items.${p.slug}.title`);
-const problem = t(`Projects.items.${p.slug}.problem`);
+  return projects.filter((p) => {
+    const title = t(`Projects.items.${p.slug}.title`).toLowerCase();
+    const problem = t(`Projects.items.${p.slug}.problem`).toLowerCase();
+    const tags = p.tags.join(" ").toLowerCase();
 
-      
-      return title.includes(searchTrimmed) || tags.includes(searchTrimmed);
-    });
-  }, [query]);
+    return (
+      title.includes(searchTrimmed) ||
+      problem.includes(searchTrimmed) ||
+      tags.includes(searchTrimmed)
+    );
+  });
+}, [query, t]);
+
 
   const isSearching = query && query.trim() !== "";
 
   return (
     <Section nopadding id="projects">
-      <SectionTitle main>{t("caseStudies.title")}</SectionTitle>
+      <GridContainer>
+      <SectionTitle main>{t("caseStudies.title")}
+      </SectionTitle>
+            {/* 🔍 Search */}
+            <SearchWrapper>
+            <SearchInput
+            placeholder={t("nav.searchPlaceholder")}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+            </SearchWrapper>
+      </GridContainer>
+
 
       {isSearching && (
         <p style={{ color: "#9cc9e3", marginBottom: "2rem" }}>
@@ -76,7 +91,6 @@ const problem = t(`Projects.items.${p.slug}.problem`);
               >
                 <Img src={p.image} alt={t(`Projects.items.${p.slug}.title`)} />
                 <TitleContent>
-                  {/* <HeaderThree title>{t(`Projects.items.${p.slug}.title`)}</HeaderThree> */}
                   <HeaderThree $isTitle>{p.title}</HeaderThree>
                   <Hr />
                 </TitleContent>
