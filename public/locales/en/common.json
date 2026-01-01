@@ -42,7 +42,10 @@
         "solution": "Vue 3 + TypeScript frontend with a .NET backend and SQL Server, Docker-ready.",
         "result": "A complete web game with betting logic and persistent data storage."
       }
-    }
+    },
+    "Press":"Press",
+    "ToSearch":"to search",
+    "EscClear":"to clear"
   }
 
 ,

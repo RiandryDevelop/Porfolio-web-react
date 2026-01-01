@@ -129,7 +129,7 @@ const { t } = useTranslation("common");
           />
         <div>
              <small style={{ opacity: 0.6 }}>
-  Press <kbd>/</kbd> to search · <kbd>ESC</kbd> to clear
+  {t("Projects.Press")} <kbd>/</kbd> {t("Projects.ToSearch")} · <kbd>ESC</kbd> {t("Projects.EscClear")}
 </small>
         </div>
            

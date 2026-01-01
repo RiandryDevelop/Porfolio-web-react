@@ -43,9 +43,11 @@
         "solution": "Aplicación web con Vue 3, TypeScript y backend en .NET con SQL Server.",
         "result": "Juego web completo con lógica de apuestas y arquitectura desplegable."
       }
-    }
-  }
-,
+    },
+    "Press":"Presiona",
+    "ToSearch":"para buscar",
+    "EscClear":"para limpiar"
+  },
   "caseStudies": {
     "title": "Casos de Estudio",
     "resultsFor": "Resultados para",
