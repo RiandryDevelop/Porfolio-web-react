@@ -38,6 +38,7 @@ const Timeline = () => {
   TOTAL_CAROUSEL_COUNT = timelineArray.length;
 
   const scroll = (node, left) => {
+    if (!node || typeof node.scrollTo !== "function") return;
     return node.scrollTo({ left, behavior: "smooth" });
   };
 
