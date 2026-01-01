@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
+import { useDebounce } from "../../hooks/useDebounce";
+
 import {
   BlogCard,
   CardInfo,
@@ -22,6 +24,7 @@ import { useTranslation } from "next-i18next";
 
 const Projects = () => {
 const { query, setQuery } = useSearch();
+const debouncedQuery = useDebounce(query, 300);
   const { t } = useTranslation("common");
 
   const filteredProjects = useMemo(() => {
@@ -40,7 +43,7 @@ const { query, setQuery } = useSearch();
       tags.includes(searchTrimmed)
     );
   });
-}, [query, t]);
+}, [debouncedQuery, t]);
 
 
   const isSearching = query && query.trim() !== "";
