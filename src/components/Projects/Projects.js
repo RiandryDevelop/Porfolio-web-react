@@ -2,6 +2,7 @@ import React, { useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDebounce } from "../../hooks/useDebounce";
 import highlightText from "../../hooks/highlightText";
+import { useRouter } from "next/router";
 
 import {
   BlogCard,
@@ -28,6 +29,36 @@ const { query, setQuery } = useSearch();
 const debouncedQuery = useDebounce(query, 300);
 const sectionRef = useRef(null);
 const searchRef = useRef(null);
+const router = useRouter();
+const { q } = router.query;
+
+
+
+useEffect(() => {
+  if (typeof q === "string" && q !== query) {
+    setQuery(q);
+  }
+}, [q]);
+
+useEffect(() => {
+  const search = query?.trim();
+
+  router.replace(
+    {
+      pathname: router.pathname,
+      query: search ? { q: search } : {},
+    },
+    undefined,
+    { shallow: true }
+  );
+}, [query]);
+
+useEffect(() => {
+  if (q && searchRef.current) {
+    searchRef.current.focus();
+  }
+}, []);
+
 useEffect(() => {
   if (!debouncedQuery) return;
 
@@ -96,9 +127,12 @@ const { t } = useTranslation("common");
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-              <small style={{ opacity: 0.6 }}>
+        <div>
+             <small style={{ opacity: 0.6 }}>
   Press <kbd>/</kbd> to search · <kbd>ESC</kbd> to clear
 </small>
+        </div>
+           
             </SearchWrapper>
         
 
