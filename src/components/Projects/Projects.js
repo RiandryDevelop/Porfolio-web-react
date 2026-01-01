@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDebounce } from "../../hooks/useDebounce";
 
@@ -25,10 +25,21 @@ import { useTranslation } from "next-i18next";
 const Projects = () => {
 const { query, setQuery } = useSearch();
 const debouncedQuery = useDebounce(query, 300);
-  const { t } = useTranslation("common");
+const sectionRef = useRef(null);
+
+useEffect(() => {
+  if (!debouncedQuery) return;
+
+  sectionRef.current?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+}, [debouncedQuery]);
+
+const { t } = useTranslation("common");
 
   const filteredProjects = useMemo(() => {
-  const searchTrimmed = (query || "").trim().toLowerCase();
+  const searchTrimmed = (debouncedQuery || "").trim().toLowerCase();
 
   if (!searchTrimmed) return projects;
 
@@ -49,7 +60,7 @@ const debouncedQuery = useDebounce(query, 300);
   const isSearching = query && query.trim() !== "";
 
   return (
-    <Section nopadding id="projects">
+    <Section nref={sectionRef} nopadding id="projects">
       <GridContainer>
       <SectionTitle main>{t("caseStudies.title")}
       </SectionTitle>
