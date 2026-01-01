@@ -1,6 +1,7 @@
 import React, { useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDebounce } from "../../hooks/useDebounce";
+import highlightText from "../../hooks/highlightText";
 
 import {
   BlogCard,
@@ -105,16 +106,29 @@ const { t } = useTranslation("common");
               >
                 <Img src={p.image} alt={t(`Projects.items.${p.slug}.title`)} />
                 <TitleContent>
-                  <HeaderThree $isTitle>{p.title}</HeaderThree>
+                  <HeaderThree $isTitle>
+                  {highlightText(
+                   t(`Projects.items.${p.slug}.title`),
+                  debouncedQuery
+                  )}
+                  </HeaderThree>
+
                   <Hr />
                 </TitleContent>
-                <CardInfo>
-                  <strong>{t("caseStudies.problem")}:</strong> {t(`Projects.items.${p.slug}.problem`)}
-                </CardInfo>
+<CardInfo>
+  <strong>{t("caseStudies.problem")}:</strong>{" "}
+  {highlightText(
+    t(`Projects.items.${p.slug}.problem`),
+    debouncedQuery
+  )}
+</CardInfo>
+
                 <TagList>
-                  {p.tags.map((t, i) => (
-                    <Tag key={i}>{t}</Tag>
-                  ))}
+                 {p.tags.map((tag, i) => (
+  <Tag key={i}>
+    {highlightText(tag, debouncedQuery)}
+  </Tag>
+))}
                 </TagList>
               </BlogCard>
             </Link>
