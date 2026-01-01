@@ -27,7 +27,7 @@ const Projects = () => {
 const { query, setQuery } = useSearch();
 const debouncedQuery = useDebounce(query, 300);
 const sectionRef = useRef(null);
-
+const searchRef = useRef(null);
 useEffect(() => {
   if (!debouncedQuery) return;
 
@@ -37,10 +37,33 @@ useEffect(() => {
   });
 }, [debouncedQuery]);
 
+useEffect(() => {
+  const handleKeyDown = (e) => {
+    const isInput =
+      document.activeElement?.tagName === "INPUT" ||
+      document.activeElement?.tagName === "TEXTAREA";
+
+    // "/" enfoca el buscador
+    if (e.key === "/" && !isInput) {
+      e.preventDefault();
+      searchRef.current?.focus();
+    }
+
+    // ESC limpia búsqueda
+    if (e.key === "Escape" && query) {
+      setQuery("");
+      searchRef.current?.blur();
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+  return () => window.removeEventListener("keydown", handleKeyDown);
+}, [query, setQuery]);
+
 const { t } = useTranslation("common");
 
   const filteredProjects = useMemo(() => {
-  const searchTrimmed = (debouncedQuery || "").trim().toLowerCase();
+  const searchTrimmed = (query || "").trim().toLowerCase();
 
   if (!searchTrimmed) return projects;
 
@@ -68,11 +91,17 @@ const { t } = useTranslation("common");
             {/* 🔍 Search */}
             <SearchWrapper>
             <SearchInput
+            ref={searchRef}
             placeholder={t("nav.searchPlaceholder")}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
+              <small style={{ opacity: 0.6 }}>
+  Press <kbd>/</kbd> to search · <kbd>ESC</kbd> to clear
+</small>
             </SearchWrapper>
+        
+
       </GridContainer>
 
 
