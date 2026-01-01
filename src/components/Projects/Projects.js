@@ -134,8 +134,6 @@ const { t } = useTranslation("common");
         </div>
            
             </SearchWrapper>
-        
-
       </GridContainer>
 
 
