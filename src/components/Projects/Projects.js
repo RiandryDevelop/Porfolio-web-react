@@ -20,7 +20,7 @@ import { useTranslation } from "next-i18next";
 
 const Projects = () => {
   const { query } = useSearch();
-   const { t } = useTranslation("common");
+  const { t } = useTranslation("common");
 
   const filteredProjects = useMemo(() => {
     const searchTrimmed = (query || "").trim().toLowerCase();
@@ -76,7 +76,8 @@ const problem = t(`Projects.items.${p.slug}.problem`);
               >
                 <Img src={p.image} alt={t(`Projects.items.${p.slug}.title`)} />
                 <TitleContent>
-                  <HeaderThree title>{t(`Projects.items.${p.slug}.title`)}</HeaderThree>
+                  {/* <HeaderThree title>{t(`Projects.items.${p.slug}.title`)}</HeaderThree> */}
+                  <HeaderThree $isTitle>{p.title}</HeaderThree>
                   <Hr />
                 </TitleContent>
                 <CardInfo>
