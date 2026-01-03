@@ -5,6 +5,8 @@ import CaseStudySEO from "../../components/SEO/CaseStudySEO";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import MediaCarousel from "../../components/MediaCarousel/MediaCarousel";
+
 
 
 import {
@@ -62,6 +64,9 @@ const CaseStudyPage = ({ project, prev, next }) => {
       <SectionTitle main>{title}</SectionTitle>
 
       <HeroImage src={project.image} alt={title} />
+      <MediaCarousel media={project.media} />
+
+      
 
       <ContentGrid>
         <div>

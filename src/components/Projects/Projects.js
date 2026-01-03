@@ -9,6 +9,8 @@ import {
   CardInfo,
   GridContainer,
   HeaderThree,
+  HeaderArea,
+  SearchHint,
   Hr,
   Tag,
   TagList,
@@ -116,25 +118,22 @@ const { t } = useTranslation("common");
 
   return (
     <Section nref={sectionRef} nopadding id="projects">
-      <GridContainer>
-      <SectionTitle main>{t("caseStudies.title")}
-      </SectionTitle>
-            {/* 🔍 Search */}
-            <SearchWrapper>
-            <SearchInput
-            ref={searchRef}
-            placeholder={t("nav.searchPlaceholder")}
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        <div>
-             <small style={{ opacity: 0.6 }}>
-  {t("Projects.Press")} <kbd>/</kbd> {t("Projects.ToSearch")} · <kbd>ESC</kbd> {t("Projects.EscClear")}
-</small>
-        </div>
-           
-            </SearchWrapper>
-      </GridContainer>
+  <HeaderArea>
+    <SectionTitle main>{t("caseStudies.title")}</SectionTitle>
+
+    <SearchWrapper>
+      <SearchInput
+        ref={searchRef}
+        placeholder={t("nav.searchPlaceholder")}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <SearchHint>
+        {t("Projects.Press")} <kbd>/</kbd> {t("Projects.ToSearch")} ·{" "}
+        <kbd>ESC</kbd> {t("Projects.EscClear")}
+      </SearchHint>
+    </SearchWrapper>
+  </HeaderArea>
 
 
       {isSearching && (
