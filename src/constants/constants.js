@@ -43,8 +43,8 @@ export const projects = [
     image: "/images/LibraryAPP/LibraryAPP_edit.PNG",
     tags: ["React Native", "Node.js", "Express", "Firebase"],
     media: [
+    { type: "image", src: "/images/LibraryAPP/LibraryAPP_edit.PNG" },
     { type: "image", src: "/images/LibraryAPP/LibraryAPP.png" },
-    { type: "image", src: "/images/LibraryAPP/LibraryAPP.PNG" },
   ],
     source: "https://github.com/RiandryDevelop/LibraryAppUI",
   },
