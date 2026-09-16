@@ -1,115 +1,170 @@
-import React, { useState, useEffect } from "react";
-import { FiMaximize2 } from "react-icons/fi";
+import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'next-i18next/pages';
+import { LuChevronLeft, LuChevronRight, LuMaximize2, LuX } from 'react-icons/lu';
+
 import {
-  Carousel,
-  Wrapper,
-  MediaWrapper,
-  HoverOverlay,
-  ExpandIcon,
-  Slide,
-  MediaImage,
-  MediaVideo,
-  Indicators,
-  Dot,
-  Control,
-  ControlIcon,
-  FullscreenOverlay,
-  FullscreenContent,
+  Caption,
   CloseButton,
-} from "./MediaCarouselStyles";
+  Control,
+  Dot,
+  Dots,
+  ExpandButton,
+  Figure,
+  Frame,
+  Overlay,
+  OverlayContent,
+  Pending,
+  Slide,
+} from './MediaCarouselStyles';
 
-const MediaCarousel = ({ media = [] }) => {
+const MediaCarousel = ({ media = [], title = '' }) => {
+  const { t } = useTranslation('common');
+
   const [active, setActive] = useState(0);
-  const [fullscreen, setFullscreen] = useState(null);
+  const [lightbox, setLightbox] = useState(null);
 
-  if (!media.length) return null;
+  const count = media.length;
 
-  const prev = () =>
-    setActive((prev) => (prev === 0 ? media.length - 1 : prev - 1));
+  const prev = useCallback(
+    () => setActive((i) => (i === 0 ? count - 1 : i - 1)),
+    [count]
+  );
+  const next = useCallback(
+    () => setActive((i) => (i === count - 1 ? 0 : i + 1)),
+    [count]
+  );
 
-  const next = () =>
-    setActive((prev) => (prev === media.length - 1 ? 0 : prev + 1));
-
-  /* 🔑 Cerrar fullscreen con ESC */
+  /*
+   * Hooks run before the empty-media early return below — the previous version
+   * bailed out first, which changed the hook count between renders.
+   */
   useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === "Escape") {
-        setFullscreen(null);
-      }
+    if (!count) return undefined;
+
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setLightbox(null);
+      if (lightbox) return;
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
     };
 
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, []);
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [count, lightbox, prev, next]);
+
+  useEffect(() => {
+    if (!lightbox) return undefined;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [lightbox]);
+
+  if (!count) {
+    return <Pending>{t('caseStudies.mediaPending')}</Pending>;
+  }
+
+  const current = media[active];
 
   return (
     <>
-      <Carousel>
-        <Wrapper>
-{media.map((item, i) => (
-  <Slide key={i} active={i === active}>
-    <MediaWrapper onClick={() => setFullscreen(item)}>
-      {item.type === "image" && (
-        <MediaImage src={item.src} alt="" />
-      )}
-
-      {item.type === "video" && (
-        <MediaVideo controls preload="metadata">
-          <source src={item.src} type="video/mp4" />
-        </MediaVideo>
-      )}
-
-      <HoverOverlay className="overlay">
-        <ExpandIcon>
-          <FiMaximize2 />
-        </ExpandIcon>
-      </HoverOverlay>
-    </MediaWrapper>
-  </Slide>
-))}
-        </Wrapper>
-
-        {/* Controls */}
-        <Control left onClick={prev} aria-label="Previous slide">
-          <ControlIcon>‹</ControlIcon>
-        </Control>
-
-        <Control right onClick={next} aria-label="Next slide">
-          <ControlIcon>›</ControlIcon>
-        </Control>
-
-        {/* Indicators */}
-        <Indicators>
-          {media.map((_, i) => (
-            <Dot
-              key={i}
-              active={i === active}
-              onClick={() => setActive(i)}
-              aria-label={`Slide ${i + 1}`}
-            />
+      <Figure>
+        <Frame>
+          {media.map((item, i) => (
+            <Slide key={item.src} $active={i === active} aria-hidden={i !== active}>
+              {item.type === 'image' ? (
+                <img
+                  src={item.src}
+                  alt={t('caseStudies.mediaAlt', { title, index: i + 1 })}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  width={item.width}
+                  height={item.height}
+                />
+              ) : (
+                <video controls preload="none" poster={item.poster} playsInline>
+                  <source src={item.src} type="video/mp4" />
+                </video>
+              )}
+            </Slide>
           ))}
-        </Indicators>
-      </Carousel>
 
-      {/* 🖥️ Fullscreen Modal */}
-      {fullscreen && (
-        <FullscreenOverlay onClick={() => setFullscreen(null)}>
-          <FullscreenContent onClick={(e) => e.stopPropagation()}>
-            {fullscreen.type === "image" && (
-              <img src={fullscreen.src} alt="" />
-            )}
+          <ExpandButton
+            type="button"
+            onClick={() => setLightbox(current)}
+            aria-label={t('caseStudies.expand')}
+          >
+            <LuMaximize2 size={16} aria-hidden="true" />
+          </ExpandButton>
 
-            {fullscreen.type === "video" && (
-              <video controls autoPlay>
-                <source src={fullscreen.src} type="video/mp4" />
+          {count > 1 && (
+            <>
+              <Control
+                type="button"
+                $side="left"
+                onClick={prev}
+                aria-label={t('caseStudies.prevSlide')}
+              >
+                <LuChevronLeft size={20} aria-hidden="true" />
+              </Control>
+              <Control
+                type="button"
+                $side="right"
+                onClick={next}
+                aria-label={t('caseStudies.nextSlide')}
+              >
+                <LuChevronRight size={20} aria-hidden="true" />
+              </Control>
+            </>
+          )}
+        </Frame>
+
+        <Caption>
+          <span aria-live="polite">
+            {active + 1} / {count}
+          </span>
+
+          {count > 1 && (
+            <Dots role="tablist">
+              {media.map((item, i) => (
+                <Dot
+                  key={item.src}
+                  type="button"
+                  role="tab"
+                  $active={i === active}
+                  aria-selected={i === active}
+                  aria-label={t('caseStudies.goToSlide', { index: i + 1 })}
+                  onClick={() => setActive(i)}
+                />
+              ))}
+            </Dots>
+          )}
+        </Caption>
+      </Figure>
+
+      {lightbox && (
+        <Overlay
+          role="dialog"
+          aria-modal="true"
+          aria-label={title}
+          onClick={() => setLightbox(null)}
+        >
+          <OverlayContent onClick={(e) => e.stopPropagation()}>
+            <CloseButton type="button" onClick={() => setLightbox(null)}>
+              <LuX size={14} aria-hidden="true" />
+              Esc
+            </CloseButton>
+
+            {lightbox.type === 'image' ? (
+              <img src={lightbox.src} alt={title} />
+            ) : (
+              <video controls autoPlay playsInline>
+                <source src={lightbox.src} type="video/mp4" />
               </video>
             )}
-
-            <CloseButton onClick={() => setFullscreen(null)}>
-              ✕
-            </CloseButton>
-          </FullscreenContent>
-        </FullscreenOverlay>
+          </OverlayContent>
+        </Overlay>
       )}
     </>
   );

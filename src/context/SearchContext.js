@@ -1,14 +1,16 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from 'react';
 
-const SearchContext = createContext();
+// A usable default means consumers still render if they end up outside the
+// provider, instead of crashing on a destructure of `undefined`.
+const SearchContext = createContext({ query: '', setQuery: () => {} });
 
 export const SearchProvider = ({ children }) => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
+
+  const value = useMemo(() => ({ query, setQuery }), [query]);
 
   return (
-    <SearchContext.Provider value={{ query, setQuery }}>
-      {children}
-    </SearchContext.Provider>
+    <SearchContext.Provider value={value}>{children}</SearchContext.Provider>
   );
 };
 

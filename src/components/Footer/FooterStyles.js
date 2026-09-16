@@ -1,159 +1,118 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
-export const FooterWrapper = styled.section`
-	width: calc(100vw - 96px);
-  max-width: 1040px;
-  padding: 2rem 48px 40px;
-  margin: 1rem auto;
-  box-sizing: content-box;
+export const Wrapper = styled.footer`
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  margin-top: ${({ theme }) => theme.space[9]};
+`;
 
+export const Inner = styled.div`
+  width: 100%;
+  max-width: ${({ theme }) => theme.layout.maxWidth};
+  margin-inline: auto;
+  padding: ${({ theme }) => `${theme.space[8]} ${theme.layout.gutter} ${theme.space[6]}`};
+`;
 
-  @media ${props => props.theme.breakpoints.sm} {
-    padding: 0 16px 48px;
-    width: calc(100vw - 32px);
-  }
-`
-
-export const LinkItem = styled.a`
-	font-size: 18px;
-	line-height: 30px;
-	color: rgba(255, 255, 255, 0.75);
-	margin-bottom: 16px;
-	transition: .3s ease;
-	position: relative;
-	left: 0;
-
-	&:hover {
-		color: #fff;
-		left: 6px;
-	}
-
-	@media ${props => props.theme.breakpoints.md} {
-		font-size: 16px;
-		line-height: 28px;
-		display: flex;
-	}
-
-	@media ${props => props.theme.breakpoints.sm} {
-		font-size: 8px;
-		line-height: 14px;
-		margin-bottom: 8px;
-		display: flex;
-		align-items: center;
-	}
-`
-
-export const SocialIconsContainer = styled.div`
-max-width: 1040px;
-display: flex;
-justify-content: space-between;
-
-@media ${props => props.theme.breakpoints.md}{
-  display: flex;
-  justify-content: space-between;
-}
-
-@media ${props => props.theme.breakpoints.sm}{
-  display: flex;
-	width: 100%;
-  flex-direction: column;
-}
-`
-
-export const CompanyContainer = styled.div`
-  display: flex;
-	align-items:baseline;
-	flex-wrap: wrap;
-	margin-right: auto;
-	
-
-	@media ${props => props.theme.breakpoints.md}{
-		flex-direction: column;
-		align-items: baseline;
-	}
-
-	@media ${props => props.theme.breakpoints.sm}{
-		display: flex;
-		flex-direction: column;
-		margin: 0 0 32px;
-		align-items: center;
-	}
-`
-
-
-export const Slogan = styled.p`
-	color: rgba(255, 255, 255, 0.5);
-	min-width: 280px;
-	letter-spacing: 0.02em;
-	font-size: 18px;
-	line-height: 30px;
-	padding: 1rem;
-
-	@media ${props => props.theme.breakpoints.md}{
-		font-size: 16px;
-		line-height: 28px;
-	}
-
-	@media ${props => props.theme.breakpoints.sm}{
-		line-height: 22px;
-		font-size: 14px;
-		min-width: 100px;
-	}
-`
-
-export const SocialContainer = styled.div`
-	display: flex;
-  align-items: center;
-
-	@media ${props => props.theme.breakpoints.md}{
-		justify-content: center;
-		padding-right: 16px;
-		flex-wrap: wrap;
-	}
-`
-
-
-export const LinkList = styled.ul`
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
+export const Top = styled.div`
   display: grid;
-	grid-template-columns: repeat(3, minmax(85px, 220px));
-	gap: 40px;
-  padding: 40px 0 28px;
+  grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
+  gap: ${({ theme }) => theme.space[7]};
 
-	@media ${props => props.theme.breakpoints.lg} {
-		padding: 32px 0 16px;
-	}
+  @media ${({ theme }) => theme.breakpoints.md} {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.space[6]};
+  }
+`;
 
-	@media ${props => props.theme.breakpoints.md} {
-		width: 100%;
-		padding: 32px 0 16px;
-		gap: 16px;
-	}
-	@media ${props => props.theme.breakpoints.sm} {
-		width: 100%;
-		padding: 32px 4px 16px;
-		gap: 5px;
-	}
-`
+export const Brand = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.space[3]};
+  align-items: flex-start;
 
-export const LinkColumn = styled.div`
-	display: flex;
-	flex-direction: column;
-	max-width: 220px;
-	width: 100%;
-`
-export const LinkTitle = styled.h4`
-	font-style: normal;
-	font-weight: 600;
-	font-size: 12px;
-	line-height: 24px;
-	text-transform: uppercase;
-	color: rgba(255, 255, 255, 0.4);
-	margin-bottom: 16px;
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: ${({ theme }) => theme.space[3]};
+    font-family: ${({ theme }) => theme.fonts.display};
+    font-size: ${({ theme }) => theme.fontSizes.bodySm};
+    font-weight: ${({ theme }) => theme.fontWeights.semibold};
+    color: ${({ theme }) => theme.colors.text};
+  }
 
-	@media ${props => props.theme.breakpoints.sm} {
-		font-size: 10px;
-		line-height: 12px;
-		margin-bottom: 8px;
-	}
-`
+  p {
+    /* Was 14px shrinking to 8px on phones; now it never drops below 13px. */
+    font-size: ${({ theme }) => theme.fontSizes.bodySm};
+    line-height: ${({ theme }) => theme.lineHeights.relaxed};
+    color: ${({ theme }) => theme.colors.textMuted};
+    max-width: 40ch;
+  }
+`;
+
+export const Column = styled.nav`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.space[3]};
+
+  h2 {
+    font-family: ${({ theme }) => theme.fonts.mono};
+    font-size: ${({ theme }) => theme.fontSizes.overline};
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
+    letter-spacing: ${({ theme }) => theme.letterSpacings.wider};
+    text-transform: uppercase;
+    color: ${({ theme }) => theme.colors.textMuted};
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: ${({ theme }) => theme.space[2]};
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: ${({ theme }) => theme.space[2]};
+    font-size: ${({ theme }) => theme.fontSizes.bodySm};
+    color: ${({ theme }) => theme.colors.textSecondary};
+    transition: color ${({ theme }) => theme.transitions.fast};
+  }
+
+  a:hover {
+    color: ${({ theme }) => theme.colors.accent};
+  }
+
+  svg {
+    flex: none;
+  }
+`;
+
+export const Bottom = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: ${({ theme }) => theme.space[4]};
+  flex-wrap: wrap;
+  margin-top: ${({ theme }) => theme.space[8]};
+  padding-top: ${({ theme }) => theme.space[5]};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+
+  p {
+    font-family: ${({ theme }) => theme.fonts.mono};
+    font-size: ${({ theme }) => theme.fontSizes.caption};
+    color: ${({ theme }) => theme.colors.textMuted};
+  }
+`;
+
+export const BackToTop = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.space[2]};
+  font-family: ${({ theme }) => theme.fonts.mono};
+  font-size: ${({ theme }) => theme.fontSizes.caption};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  transition: color ${({ theme }) => theme.transitions.fast};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent};
+  }
+`;

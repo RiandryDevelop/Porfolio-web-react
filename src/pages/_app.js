@@ -1,4 +1,4 @@
-import { appWithTranslation } from "next-i18next";
+import { appWithTranslation } from "next-i18next/pages";
 import { SearchProvider } from "../context/SearchContext";
 import Theme from "../styles/theme";
 

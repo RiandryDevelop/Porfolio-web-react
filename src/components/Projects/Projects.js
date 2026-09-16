@@ -1,200 +1,243 @@
-import React, { useMemo, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useDebounce } from "../../hooks/useDebounce";
-import highlightText from "../../hooks/highlightText";
-import { useRouter } from "next/router";
+import { useEffect, useMemo, useRef } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'next-i18next/pages';
+import { LuArrowUpRight, LuSearch, LuX } from 'react-icons/lu';
 
+import { projects } from '../../constants/constants';
+import { useSearch } from '../../context/SearchContext';
+import { useDebounce } from '../../hooks/useDebounce';
+import highlightText from '../../hooks/highlightText';
+import { cardVariants, inView, stagger } from '../../styles/animations/variants';
+import Button from '../../styles/GlobalComponents/Button';
 import {
-  BlogCard,
-  CardInfo,
-  GridContainer,
-  HeaderThree,
+  Container,
+  Eyebrow,
+  Section,
+  SectionLead,
+  SectionTitle,
+} from '../../styles/GlobalComponents';
+import {
+  Card,
+  CardBody,
+  CardMedia,
+  CardMeta,
+  CardSummary,
+  CardTag,
+  CardTags,
+  CardTitle,
+  ClearButton,
+  EmptyState,
+  Grid,
   HeaderArea,
+  HeaderCopy,
+  MediaFallback,
+  ResultCount,
+  SearchField,
   SearchHint,
-  Hr,
-  Tag,
-  TagList,
-  TitleContent,
-  Img,
+  SearchInput,
   SearchWrapper,
-  SearchInput
-} from "./ProjectsStyles";
-import Link from "next/link";
-import { Section, SectionTitle } from "../../styles/GlobalComponents";
-import { cardVariants } from "../../styles/animations/variants";
-import { projects } from "../../constants/constants";
-import { useSearch } from "../../context/SearchContext";
-import { useTranslation } from "next-i18next";
+} from './ProjectsStyles';
 
 const Projects = () => {
-const { query, setQuery } = useSearch();
-const debouncedQuery = useDebounce(query, 300);
-const sectionRef = useRef(null);
-const searchRef = useRef(null);
-const router = useRouter();
-const { q } = router.query;
+  const { t } = useTranslation('common');
+  const { query, setQuery } = useSearch();
+  const debouncedQuery = useDebounce(query, 250);
 
+  const router = useRouter();
+  const searchRef = useRef(null);
+  const hydratedFromUrl = useRef(false);
 
+  // Seed the box from ?q= once, so a shared link opens on the same results.
+  useEffect(() => {
+    if (hydratedFromUrl.current || !router.isReady) return;
+    hydratedFromUrl.current = true;
 
-useEffect(() => {
-  if (typeof q === "string" && q !== query) {
-    setQuery(q);
-  }
-}, [q]);
-
-useEffect(() => {
-  const search = query?.trim();
-
-  router.replace(
-    {
-      pathname: router.pathname,
-      query: search ? { q: search } : {},
-    },
-    undefined,
-    { shallow: true }
-  );
-}, [query]);
-
-useEffect(() => {
-  if (q && searchRef.current) {
-    searchRef.current.focus();
-  }
-}, []);
-
-useEffect(() => {
-  if (!debouncedQuery) return;
-
-  sectionRef.current?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-}, [debouncedQuery]);
-
-useEffect(() => {
-  const handleKeyDown = (e) => {
-    const isInput =
-      document.activeElement?.tagName === "INPUT" ||
-      document.activeElement?.tagName === "TEXTAREA";
-
-    // "/" enfoca el buscador
-    if (e.key === "/" && !isInput) {
-      e.preventDefault();
+    const fromUrl = typeof router.query.q === 'string' ? router.query.q : '';
+    if (fromUrl) {
+      setQuery(fromUrl);
       searchRef.current?.focus();
     }
+  }, [router.isReady, router.query.q, setQuery]);
 
-    // ESC limpia búsqueda
-    if (e.key === "Escape" && query) {
-      setQuery("");
-      searchRef.current?.blur();
-    }
-  };
+  // Mirror the *settled* query back into the URL. Doing this per keystroke
+  // rewrote history on every character.
+  useEffect(() => {
+    if (!hydratedFromUrl.current) return;
 
-  window.addEventListener("keydown", handleKeyDown);
-  return () => window.removeEventListener("keydown", handleKeyDown);
-}, [query, setQuery]);
+    const search = debouncedQuery.trim();
+    const current = typeof router.query.q === 'string' ? router.query.q : '';
+    if (search === current) return;
 
-const { t } = useTranslation("common");
-
-  const filteredProjects = useMemo(() => {
-  const searchTrimmed = (query || "").trim().toLowerCase();
-
-  if (!searchTrimmed) return projects;
-
-  return projects.filter((p) => {
-    const title = t(`Projects.items.${p.slug}.title`).toLowerCase();
-    const problem = t(`Projects.items.${p.slug}.problem`).toLowerCase();
-    const tags = p.tags.join(" ").toLowerCase();
-
-    return (
-      title.includes(searchTrimmed) ||
-      problem.includes(searchTrimmed) ||
-      tags.includes(searchTrimmed)
+    router.replace(
+      { pathname: router.pathname, query: search ? { q: search } : {} },
+      undefined,
+      { shallow: true, scroll: false }
     );
-  });
-}, [debouncedQuery, t]);
+  }, [debouncedQuery]);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      const tag = document.activeElement?.tagName;
+      const isTyping = tag === 'INPUT' || tag === 'TEXTAREA';
 
-  const isSearching = query && query.trim() !== "";
+      if (e.key === '/' && !isTyping) {
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+
+      if (e.key === 'Escape' && isTyping) {
+        setQuery('');
+        searchRef.current?.blur();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [setQuery]);
+
+  // Filter on the debounced value so typing does not re-run this per keystroke.
+  const filtered = useMemo(() => {
+    const term = debouncedQuery.trim().toLowerCase();
+    if (!term) return projects;
+
+    return projects.filter((project) => {
+      const haystack = [
+        t(`projects.items.${project.slug}.title`),
+        t(`projects.items.${project.slug}.summary`),
+        t(`projects.items.${project.slug}.problem`),
+        project.tags.join(' '),
+        project.kind,
+      ]
+        .join(' ')
+        .toLowerCase();
+
+      return haystack.includes(term);
+    });
+  }, [debouncedQuery, t]);
+
+  const isSearching = debouncedQuery.trim() !== '';
 
   return (
-    <Section nref={sectionRef} nopadding id="projects">
-  <HeaderArea>
-    <SectionTitle main>{t("caseStudies.title")}</SectionTitle>
+    <Section id="work">
+      <Container>
+        <HeaderArea>
+          <HeaderCopy>
+            <Eyebrow>{t('work.eyebrow')}</Eyebrow>
+            <SectionTitle>{t('work.title')}</SectionTitle>
+            <SectionLead>{t('work.lead')}</SectionLead>
+          </HeaderCopy>
 
-    <SearchWrapper>
-      <SearchInput
-        ref={searchRef}
-        placeholder={t("nav.searchPlaceholder")}
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <SearchHint>
-        {t("Projects.Press")} <kbd>/</kbd> {t("Projects.ToSearch")} ·{" "}
-        <kbd>ESC</kbd> {t("Projects.EscClear")}
-      </SearchHint>
-    </SearchWrapper>
-  </HeaderArea>
+          <SearchWrapper>
+            <SearchField>
+              <LuSearch size={18} aria-hidden="true" />
+              <SearchInput
+                ref={searchRef}
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={t('work.searchPlaceholder')}
+                aria-label={t('work.searchPlaceholder')}
+              />
+              {query && (
+                <ClearButton
+                  type="button"
+                  onClick={() => {
+                    setQuery('');
+                    searchRef.current?.focus();
+                  }}
+                  aria-label={t('work.clearSearch')}
+                >
+                  <LuX size={16} aria-hidden="true" />
+                </ClearButton>
+              )}
+            </SearchField>
 
+            <SearchHint>
+              <kbd>/</kbd> {t('work.hintSearch')}
+              <kbd>Esc</kbd> {t('work.hintClear')}
+            </SearchHint>
+          </SearchWrapper>
+        </HeaderArea>
 
-      {isSearching && (
-        <p style={{ color: "#9cc9e3", marginBottom: "2rem" }}>
-          {t("caseStudies.resultsFor")} “{query}”
-        </p>
-      )}
+        {/* Announced politely so screen readers hear the result count change. */}
+        <ResultCount role="status" aria-live="polite">
+          {isSearching
+            ? t('work.resultCount', { count: filtered.length, query: debouncedQuery })
+            : t('work.totalCount', { count: projects.length })}
+        </ResultCount>
 
-      {/* Mensaje de no resultados corregido */}
-      {filteredProjects.length === 0 && (
-        <p style={{ opacity: 0.6, textAlign: 'center', marginTop: '2rem' }}>
-          {t("caseStudies.noResults")} "{query}".
-        </p>
-      )}
+        {filtered.length === 0 ? (
+          <EmptyState>
+            <p>
+              {t('work.noResults')} <strong>&ldquo;{debouncedQuery}&rdquo;</strong>
+            </p>
+            <Button type="button" $variant="secondary" $size="sm" onClick={() => setQuery('')}>
+              {t('work.clearSearch')}
+            </Button>
+          </EmptyState>
+        ) : (
+          <Grid
+            as={motion.div}
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={inView}
+          >
+            {filtered.map((project, index) => {
+              const title = t(`projects.items.${project.slug}.title`);
+              const summary = t(`projects.items.${project.slug}.summary`);
+              const cover = project.media?.find((m) => m.type === 'image');
 
-      <GridContainer
-        as={motion.section}
-        initial="hidden"
-        animate="visible"
-        viewport={{ once: true }}
-        transition={{ staggerChildren: 0.15 }}
-      >
-        {filteredProjects.map((p) => (
-          <div key={p.id}>
-            <Link href={`/case-studies/${p.slug}`} passHref>
-              <BlogCard
-                as={motion.div}
-                variants={cardVariants}
-                whileHover={{ y: -6, scale: 1.02 }}
-              >
-                <Img src={p.image} alt={t(`Projects.items.${p.slug}.title`)} />
-                <TitleContent>
-                  <HeaderThree $isTitle>
-                  {highlightText(
-                   t(`Projects.items.${p.slug}.title`),
-                  debouncedQuery
-                  )}
-                  </HeaderThree>
+              return (
+                <motion.div key={project.slug} variants={cardVariants}>
+                  <Card as={Link} href={`/case-studies/${project.slug}`}>
+                      <CardMedia $portrait={cover?.portrait} $src={cover?.src}>
+                        {cover ? (
+                          <img
+                            src={cover.src}
+                            alt=""
+                            loading={index < 2 ? 'eager' : 'lazy'}
+                            decoding="async"
+                            width={cover.width}
+                            height={cover.height}
+                          />
+                        ) : (
+                          <MediaFallback>{t('work.mediaPending')}</MediaFallback>
+                        )}
+                      </CardMedia>
 
-                  <Hr />
-                </TitleContent>
-<CardInfo>
-  <strong>{t("caseStudies.problem")}:</strong>{" "}
-  {highlightText(
-    t(`Projects.items.${p.slug}.problem`),
-    debouncedQuery
-  )}
-</CardInfo>
+                      <CardBody>
+                        <CardMeta>
+                          <span>{project.year}</span>
+                          <span>{t(`work.kinds.${project.kind}`)}</span>
+                        </CardMeta>
 
-                <TagList>
-                 {p.tags.map((tag, i) => (
-  <Tag key={i}>
-    {highlightText(tag, debouncedQuery)}
-  </Tag>
-))}
-                </TagList>
-              </BlogCard>
-            </Link>
-          </div>
-        ))}
-      </GridContainer>
+                        <CardTitle>
+                          {highlightText(title, debouncedQuery)}
+                          <LuArrowUpRight size={20} aria-hidden="true" />
+                        </CardTitle>
+
+                        <CardSummary>
+                          {highlightText(summary, debouncedQuery)}
+                        </CardSummary>
+
+                        <CardTags>
+                          {project.tags.slice(0, 5).map((tag) => (
+                            <CardTag key={tag}>
+                              {highlightText(tag, debouncedQuery)}
+                            </CardTag>
+                          ))}
+                        </CardTags>
+                      </CardBody>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </Grid>
+        )}
+      </Container>
     </Section>
   );
 };

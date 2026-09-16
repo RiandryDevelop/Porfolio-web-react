@@ -1,127 +1,201 @@
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { projects } from "../../constants/constants";
-import CaseStudySEO from "../../components/SEO/CaseStudySEO";
-import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import MediaCarousel from "../../components/MediaCarousel/MediaCarousel";
-
-
-
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next/pages';
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations';
 import {
-  SectionTitle,
+  LuArrowLeft,
+  LuArrowRight,
+  LuExternalLink,
+  LuGithub,
+  LuSmartphone,
+} from 'react-icons/lu';
+
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import MediaCarousel from '../../components/MediaCarousel/MediaCarousel';
+import Seo from '../../components/SEO/Seo';
+import { projects } from '../../constants/constants';
+import { site } from '../../constants/site';
+import { Layout } from '../../layout/Layout';
+import Button from '../../styles/GlobalComponents/Button';
+import {
+  ButtonStack,
+  CaseStudyHeader,
+  CaseStudyMeta,
   CaseStudyWrapper,
-  HeroImage,
   ContentGrid,
-  InfoBlock,
-  Sidebar,
-  SidebarTitle,
   CTASection,
-  NavWrapper,
+  Eyebrow,
+  InfoBlock,
   NavLink,
-  TagList,
+  NavWrapper,
+  SectionLead,
+  SectionTitle,
+  Sidebar,
+  SidebarBlock,
+  SidebarTitle,
   Tag,
-} from "../../styles/GlobalComponents";
-import CTAButton from "../../styles/GlobalComponents/CTAButton";
+  TagList,
+} from '../../styles/GlobalComponents';
 
 const CaseStudyPage = ({ project, prev, next }) => {
-  const router = useRouter();
-  const { t } = useTranslation("common");
-
-  if (router.isFallback) {
-    return <p>{t("caseStudies.loading")}</p>;
-  }
-
-  if (!project) {
-    return <p>{t("caseStudies.noResults")}</p>;
-  }
+  const { t } = useTranslation('common');
 
   const { slug } = project;
+  const title = t(`projects.items.${slug}.title`);
+  const summary = t(`projects.items.${slug}.summary`);
+  const cover = project.media?.find((m) => m.type === 'image');
 
-  const title = t(`Projects.items.${slug}.title`);
-  const problem = t(`Projects.items.${slug}.problem`);
-  const solution = t(`Projects.items.${slug}.solution`);
-  const result = t(`Projects.items.${slug}.result`);
+  // Primary action first, source last; each project declares only what it has.
+  const links = [
+    { key: 'visitSite', href: project.links?.live, Icon: LuExternalLink, variant: 'primary' },
+    { key: 'viewStore', href: project.links?.store, Icon: LuSmartphone, variant: 'primary' },
+    { key: 'viewSource', href: project.links?.source, Icon: LuGithub, variant: 'secondary' },
+  ].filter((link) => Boolean(link.href));
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: title,
+    description: summary,
+    image: cover ? `${site.url}${cover.src}` : undefined,
+    dateCreated: project.year,
+    keywords: project.tags.join(', '),
+    author: { '@type': 'Person', name: site.name, url: site.url },
+    url: `${site.url}/case-studies/${slug}`,
+  };
 
   return (
-    <CaseStudyWrapper>
-      <CaseStudySEO
+    <Layout>
+      <Seo
         title={title}
-        description={result}
-        image={project.image}
-        slug={slug}
+        description={summary}
+        image={cover?.src}
+        type="article"
+        jsonLd={jsonLd}
       />
 
-      <Breadcrumbs
-        items={[
-          { label: t("seo.home"), href: "/" },
-          { label: t("caseStudies.title"), href: "/#projects" },
-          { label: title },
-        ]}
-      />
+      <CaseStudyWrapper>
+        <Breadcrumbs
+          items={[
+            { label: t('seo.home'), href: '/' },
+            { label: t('work.title'), href: '/#work' },
+            { label: title },
+          ]}
+        />
 
-      <SectionTitle main>{title}</SectionTitle>
+        <CaseStudyHeader>
+          <Eyebrow>{t(`work.kinds.${project.kind}`)}</Eyebrow>
+          <SectionTitle>{title}</SectionTitle>
+          <SectionLead>{summary}</SectionLead>
+        </CaseStudyHeader>
 
-      <HeroImage src={project.image} alt={title} />
-      <MediaCarousel media={project.media} />
+        <CaseStudyMeta>
+          <div>
+            <dt>{t('caseStudies.year')}</dt>
+            <dd>{project.year}</dd>
+          </div>
+          <div>
+            <dt>{t('caseStudies.role')}</dt>
+            <dd>{t(`projects.items.${slug}.role`)}</dd>
+          </div>
+          <div>
+            <dt>{t('caseStudies.type')}</dt>
+            <dd>{t(`work.kinds.${project.kind}`)}</dd>
+          </div>
+        </CaseStudyMeta>
 
-      
+        <MediaCarousel media={project.media} title={title} />
 
-      <ContentGrid>
-        <div>
-          <InfoBlock>
-            <h3>{t("caseStudies.problem")}</h3>
-            <p>{problem}</p>
-          </InfoBlock>
+        <ContentGrid>
+          <div>
+            <InfoBlock>
+              <h3>{t('caseStudies.problem')}</h3>
+              <p>{t(`projects.items.${slug}.problem`)}</p>
+            </InfoBlock>
 
-          <InfoBlock>
-            <h3>{t("caseStudies.solution")}</h3>
-            <p>{solution}</p>
-          </InfoBlock>
+            <InfoBlock>
+              <h3>{t('caseStudies.solution')}</h3>
+              <p>{t(`projects.items.${slug}.solution`)}</p>
+            </InfoBlock>
 
-          <InfoBlock>
-            <h3>{t("caseStudies.result")}</h3>
-            <p>{result}</p>
-          </InfoBlock>
-        </div>
+            <InfoBlock>
+              <h3>{t('caseStudies.result')}</h3>
+              <p>{t(`projects.items.${slug}.result`)}</p>
+            </InfoBlock>
+          </div>
 
-        <Sidebar>
-          <SidebarTitle>{t("caseStudies.stack")}</SidebarTitle>
-          <TagList>
-            {project.tags.map((tag, i) => (
-              <Tag key={i}>{tag}</Tag>
-            ))}
-          </TagList>
-        </Sidebar>
-      </ContentGrid>
+          <Sidebar>
+            <SidebarBlock>
+              <SidebarTitle>{t('caseStudies.stack')}</SidebarTitle>
+              <TagList>
+                {project.tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </TagList>
+            </SidebarBlock>
 
-      <CTASection>
-        <CTAButton
-          href={`mailto:riandrydevsoffers@gmail.com?subject=Proyecto similar a ${title}`}
-        >
-          {t("caseStudies.ctaSimilar")}
-        </CTAButton>
-      </CTASection>
+            {links.length > 0 && (
+              <SidebarBlock>
+                <SidebarTitle>{t('caseStudies.links')}</SidebarTitle>
+                <ButtonStack>
+                  {links.map(({ key, href, Icon, variant }) => (
+                    <Button
+                      key={key}
+                      as="a"
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      $variant={variant}
+                      $size="sm"
+                      $full
+                    >
+                      <Icon aria-hidden="true" />
+                      {t(`caseStudies.${key}`)}
+                    </Button>
+                  ))}
+                </ButtonStack>
+              </SidebarBlock>
+            )}
+          </Sidebar>
+        </ContentGrid>
 
-      <NavWrapper>
-        {prev && (
-          <Link href={`/case-studies/${prev.slug}`} passHref>
-            <NavLink>
-              ← {t(`Projects.items.${prev.slug}.title`)}
+        <CTASection>
+          <SectionTitle as="h2">{t('caseStudies.ctaTitle')}</SectionTitle>
+          <SectionLead as="p">{t('caseStudies.ctaLead')}</SectionLead>
+          <Button
+            as="a"
+            href={`mailto:${site.email}?subject=${encodeURIComponent(
+              `${t('caseStudies.ctaSubject')} ${title}`
+            )}`}
+            $variant="primary"
+          >
+            {t('caseStudies.ctaSimilar')}
+            <LuArrowRight aria-hidden="true" />
+          </Button>
+        </CTASection>
+
+        <NavWrapper aria-label={t('caseStudies.pagination')}>
+          {prev ? (
+            <NavLink as={Link} href={`/case-studies/${prev.slug}`}>
+              <span>
+                <LuArrowLeft size={12} aria-hidden="true" /> {t('caseStudies.prev')}
+              </span>
+              <strong>{t(`projects.items.${prev.slug}.title`)}</strong>
             </NavLink>
-          </Link>
-        )}
+          ) : (
+            <span />
+          )}
 
-        {next && (
-          <Link href={`/case-studies/${next.slug}`} passHref>
-            <NavLink>
-              {t(`Projects.items.${next.slug}.title`)} →
+          {next && (
+            <NavLink as={Link} href={`/case-studies/${next.slug}`} $align="end">
+              <span>
+                {t('caseStudies.next')} <LuArrowRight size={12} aria-hidden="true" />
+              </span>
+              <strong>{t(`projects.items.${next.slug}.title`)}</strong>
             </NavLink>
-          </Link>
-        )}
-      </NavWrapper>
-    </CaseStudyWrapper>
+          )}
+        </NavWrapper>
+      </CaseStudyWrapper>
+    </Layout>
   );
 };
 
@@ -132,34 +206,24 @@ export async function getStaticPaths({ locales }) {
 
   projects.forEach((project) => {
     locales.forEach((locale) => {
-      paths.push({
-        params: { slug: project.slug },
-        locale,
-      });
+      paths.push({ params: { slug: project.slug }, locale });
     });
   });
 
-  return {
-    paths,
-    fallback: false,
-  };
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params, locale }) {
-  const index = projects.findIndex(
-    (p) => p.slug === params.slug
-  );
+  const index = projects.findIndex((p) => p.slug === params.slug);
 
-  const project = projects[index] || null;
-  const prev = projects[index - 1] || null;
-  const next = projects[index + 1] || null;
+  if (index === -1) return { notFound: true };
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-      project,
-      prev,
-      next,
+      ...(await serverSideTranslations(locale, ['common'])),
+      project: projects[index],
+      prev: projects[index - 1] || null,
+      next: projects[index + 1] || null,
     },
   };
 }

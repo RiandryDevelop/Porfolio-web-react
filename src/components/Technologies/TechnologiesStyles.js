@@ -1,133 +1,74 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-export const ImageContainer = styled.div`
-  text-align: center;
-  background-image: radial-gradient(50% 50% at 50% 50%, rgba(79, 108, 176, 0.25) 53.8%, rgba(79, 108, 176, 0) 100%);
-  width: 100%;
-  padding: 60px;
-  margin-top: 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  @media ${props => props.theme.breakpoints.lg} {
-    background-image: none;
-    padding: 0;
-    margin-top: 40px;
-  }
-  @media ${props => props.theme.breakpoints.md} {
-    background-image: none;
-    padding: 0;
-    margin-top: 16px;
-  }
-`
-
-export const MainImage = styled.img`
-  width: 100%;
-`
-
-export const List = styled.ul`
-  list-style-type: none;
+export const Groups = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin: 3rem 0;
-  
-  @media ${props => props.theme.breakpoints.lg}{
-    margin: 64px 0;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  gap: ${({ theme }) => theme.space[4]};
+`;
 
-  @media ${props => props.theme.breakpoints.md}{
-    margin: 64px 0;
-    gap: 24px
-  }
-  
-  @media ${props => props.theme.breakpoints.sm}{
-    display: flex;
-    flex-direction: column;
-    margin: 32px 0;
-  }
-`
-
-export const ListContainer = styled.div`
+export const Group = styled.section`
   display: flex;
   flex-direction: column;
+  gap: ${({ theme }) => theme.space[4]};
+  padding: ${({ theme }) => theme.space[5]};
+  background: ${({ theme }) => theme.colors.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radii.lg};
+`;
 
-  @media ${props => props.theme.breakpoints.sm}{
-    display: flex;
-    margin-left: 18px;
-  }
-`
-
-export const ListTitle = styled.h4`
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 32px;
-  letter-spacing: 0.02em;
-  color: #FFFFFF;
-  margin-bottom: 8px;
-
-@media ${props => props.theme.breakpoints.md}{
-  font-size: 24px;
-  line-height: 28px;
-}
-
-@media ${props => props.theme.breakpoints.sm}{
-  font-size: 20px;
-  line-height: 28px;
-  letter-spacing: 0.02em;
-  margin-bottom: 4px;
-}
-`
-
-export const ListParagraph = styled.p`
-  font-size: 18px;
-  line-height: 30px;
-  color: rgba(255, 255, 255, 0.75);
-
-  @media ${props => props.theme.breakpoints.md}{
-    font-size: 16px;
-    line-height: 28px;
-  }
-
-  @media ${props => props.theme.breakpoints.sm}{
-    font-size: 14px;
-    line-height: 22px;
-  }
-`
-
-export const ListItem = styled.li`
-  max-width: 320px;
+export const GroupHead = styled.header`
   display: flex;
   flex-direction: column;
+  gap: ${({ theme }) => theme.space[1]};
 
-@media ${props => props.theme.breakpoints.md}{
-  max-width: 203px;
-}
-
-@media ${props => props.theme.breakpoints.sm}{
-  margin-bottom: 14px;
-  max-width: 320px;
-  flex-direction: row;
-}
-`
-
-export const ListIcon = styled.img`
-  display: block;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 10px;
-  
-  @media ${props => props.theme.breakpoints.md}{
-    width: 40px;
-    height: 40px;
-    margin-bottom: 8px;
+  h3 {
+    font-family: ${({ theme }) => theme.fonts.mono};
+    font-size: ${({ theme }) => theme.fontSizes.overline};
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
+    letter-spacing: ${({ theme }) => theme.letterSpacings.wider};
+    text-transform: uppercase;
+    color: ${({ theme }) => theme.colors.accent};
   }
 
-  @media ${props => props.theme.breakpoints.sm}{
-    width: 32px;
-    height: 32px;
-    margin-bottom: 0px;
+  p {
+    font-size: ${({ theme }) => theme.fontSizes.bodySm};
+    line-height: ${({ theme }) => theme.lineHeights.normal};
+    color: ${({ theme }) => theme.colors.textSecondary};
   }
-`
+`;
+
+export const Chips = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.space[2]};
+  margin-top: auto;
+`;
+
+export const Chip = styled.li`
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.space[2]};
+  font-size: ${({ theme }) => theme.fontSizes.caption};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  background: ${({ theme }) => theme.colors.surfaceRaised};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radii.pill};
+  padding: ${({ theme }) => `${theme.space[1]} ${theme.space[3]}`};
+  transition: border-color ${({ theme }) => theme.transitions.fast},
+    color ${({ theme }) => theme.transitions.fast};
+
+  svg {
+    flex: none;
+    color: ${({ theme }) => theme.colors.textMuted};
+    transition: color ${({ theme }) => theme.transitions.fast};
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.text};
+    border-color: ${({ theme }) => theme.colors.borderStrong};
+  }
+
+  &:hover svg {
+    color: ${({ theme }) => theme.colors.accent};
+  }
+`;

@@ -1,110 +1,271 @@
 {
   "nav": {
-    "projects": "Casos de Estudio",
-    "tech": "Tecnologías",
+    "work": "Casos",
+    "services": "Servicios",
+    "stack": "Stack",
     "about": "Sobre mí",
-    "searchPlaceholder": "Buscar estudios de caso"
+    "contact": "Contacto",
+    "primary": "Navegación principal",
+    "language": "Idioma",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "skipToContent": "Saltar al contenido"
   },
-
   "hero": {
-    "title": "Desarrollador Full-Stack",
-    "subtitle": "Mi nombre es Riandry Connor y desarrollo soluciones web, APIs robustas y aplicaciones escalables para startups y empresas.",
-    "ctaProjects": "Ver proyectos",
+    "availability": "Disponible para proyectos",
+    "titleLead": "Construyo productos que",
+    "titleAccent": "llegan a producción.",
+    "subtitle": "Soy Riandry Connor, desarrollador full-stack. Diseño y construyo SaaS, APIs y aplicaciones móviles completas — de la primera línea de código al pipeline que las despliega.",
+    "ctaProjects": "Ver casos de estudio",
     "ctaCV": "Descargar CV",
-    "CVurl": "/images/RiandryConnor_CV_ES.pdf"
-  },
-
-  "Projects": {  
-    "items": {
-      "instagram-business-scraper-api": {
-        "title": "Instagram Business Scraper API",
-        "problem": "Empresas y agencias necesitaban automatizar la gestión de cuentas Instagram Business, acceder a datos públicos y controlar el uso de la plataforma de forma segura y escalable.",
-        "solution": "Desarrollé una API asíncrona con FastAPI que integra scraping de perfiles públicos, mensajería vía Facebook Graph API, autenticación JWT y control de planes mediante PayPal.",
-        "result": "Una arquitectura backend lista para SaaS, segura, escalable y preparada para integrarse en soluciones de marketing automation o CRM."
+    "facts": {
+      "experience": {
+        "value": "6+",
+        "label": "Años construyendo software a medida"
       },
-
-      "sismo-app": {
-        "title": "Sismo App",
-        "problem": "Centralizar y visualizar información sísmica global en tiempo real con una interfaz rápida y fácil de usar.",
-        "solution": "Construí una aplicación full-stack con React, Vite y TailwindCSS en el frontend, y un backend en Ruby on Rails con API REST.",
-        "result": "Una plataforma moderna y escalable que ofrece información sísmica en tiempo real."
+      "shipped": {
+        "value": "4",
+        "label": "Productos propios y de clientes en producción"
       },
-
-      "library-app-mobile": {
-        "title": "Library App (Mobile)",
-        "problem": "Gestionar bibliotecas personales desde dispositivos móviles de forma segura.",
-        "solution": "Aplicación móvil multiplataforma con React Native y backend en Node.js + Firebase.",
-        "result": "App funcional con autenticación segura y CRUD completo."
-      },
-
-      "the-roulette-game": {
-        "title": "The Roulette Game",
-        "problem": "Crear una experiencia de juego web interactiva con apuestas en tiempo real.",
-        "solution": "Aplicación web con Vue 3, TypeScript y backend en .NET con SQL Server.",
-        "result": "Juego web completo con lógica de apuestas y arquitectura desplegable."
+      "stack": {
+        "value": "Full-stack",
+        "label": "De la app móvil al despliegue en la nube"
       }
-    },
-    "Press":"Presiona",
-    "ToSearch":"para buscar",
-    "EscClear":"para limpiar"
-  },
-  "caseStudies": {
-    "title": "Casos de Estudio",
-    "resultsFor": "Resultados para",
-    "noResults": "No hay casos de estudio que coincidan con tu búsqueda",
-    "problem": "Problema",
-    "solution": "Solución",
-    "result": "Resultado",
-    "stack": "Stack tecnológico",
-    "ctaSimilar": "Quiero un proyecto similar",
-    "prev": "Anterior",
-    "next": "Siguiente",
-    "loading": "Cargando..."
-  },
-
-  "technologies": {
-    "title": "Tecnologías",
-    "subtitle": "Tecnologías con las que he trabajado",
-    "frontendDesc": "Experiencia con React, Angular y frameworks modernos",
-    "backendDesc": "Experiencia con Node.js, .NET, Ruby on Rails y APIs",
-    "mobileDesc": "Kotlin (Android) y React Native",
-    "uiuxDesc": "Diseño de interfaces con Figma"
-  },
-
-  "about": {
-    "title": "Sobre mí",
-    "description": "Soy un desarrollador Full-Stack apasionado por crear soluciones web escalables y APIs robustas. Me especializo en transformar ideas en productos funcionales que impulsan el crecimiento empresarial."
-  },
-
-  "timeline": {
-    "title": "Mi trayectoria",
-    "items": {
-      "2021": "Inicié mi carrera con pequeños proyectos freelance y práctica constante.",
-      "2022": "Amplié mis habilidades aprendiendo nuevas tecnologías y colaborando en distintos proyectos.",
-      "2023": "Me uní a una empresa como software engineer mientras continuaba desarrollos personales.",
-      "2024": "Entregué soluciones frontend y backend como consultor en múltiples industrias.",
-      "2025": "Continúo trabajando en soluciones complejas y expandiendo mi experiencia tecnológica."
     }
   },
-
-  "stats": {
-    "title": "Logros Profesionales",
-    "years": "Años de experiencia",
-    "projects": "Proyectos realizados con empresas",
-    "collabs": "Colaboraciones",
-    "certs": "Certificaciones"
+  "work": {
+    "eyebrow": "Trabajo seleccionado",
+    "title": "Casos de estudio",
+    "lead": "Cuatro productos reales, contados por el problema que resolvían, las decisiones técnicas que tomé y lo que quedó funcionando.",
+    "searchPlaceholder": "Buscar por nombre o tecnología",
+    "clearSearch": "Limpiar búsqueda",
+    "hintSearch": "para buscar",
+    "hintClear": "para limpiar",
+    "resultCount": "{{count}} resultado para “{{query}}”",
+    "resultCount_other": "{{count}} resultados para “{{query}}”",
+    "totalCount": "{{count}} casos de estudio",
+    "noResults": "Ningún caso de estudio coincide con",
+    "mediaPending": "Captura pendiente",
+    "kinds": {
+      "saas": "Producto SaaS",
+      "mobile": "Aplicación móvil",
+      "enterprise": "Sistema corporativo",
+      "game": "Juego web"
+    }
   },
-
+  "projects": {
+    "items": {
+      "modest-pos": {
+        "title": "Modest POS",
+        "summary": "Punto de venta SaaS con recomendaciones de venta cruzada por IA, pensado para pymes de Latinoamérica.",
+        "role": "Producto, arquitectura y desarrollo full-stack",
+        "problem": "Las pymes de restauración pierden margen en cada ticket: el cajero no tiene tiempo de sugerir complementos y los POS del mercado o son caros, o exigen integraciones y un alcance PCI que un negocio pequeño no puede asumir.",
+        "solution": "Construí un punto de venta completo en Next.js sobre Supabase — Postgres, autenticación y storage — con caja, catálogo con costos y márgenes, control de stock, pantalla de órdenes en vivo y quiosco de autoservicio. Las suscripciones se cobran con PayPal y todo se despliega en Vercel. El motor de recomendación aprende del menú real del comercio y responde en un único endpoint; si la IA no contesta a tiempo, cae a los productos más vendidos para que la pantalla nunca se congele. Solo viajan IDs de producto y precios, así que el sistema queda fuera del alcance PCI-DSS.",
+        "result": "Un SaaS multi-inquilino en producción con prueba gratuita, analíticas en tiempo real, facturación y onboarding sin código. Funciona por sí solo: no necesita otro POS detrás."
+      },
+      "screen-notify": {
+        "title": "Screen Notify",
+        "summary": "App Android en Flutter que convierte las notificaciones que importan en alertas a pantalla completa, con reglas por app y por contacto.",
+        "role": "Desarrollo móvil, capa nativa y monetización",
+        "problem": "Una notificación importante se pierde entre decenas de avisos diarios. Los sistemas de alerta existentes no distinguen quién escribe ni desde qué aplicación, y dejan de funcionar justo cuando más falta hacen: con el teléfono bloqueado o la app cerrada.",
+        "solution": "Arquitectura híbrida. Flutter se encarga de la interfaz, las reglas, el almacenamiento local y el estado de compras; una capa nativa en Kotlin ejecuta un NotificationListenerService que intercepta las notificaciones del sistema, las contrasta contra la base de reglas en tiempo real y lanza alertas a pantalla completa aunque el dispositivo esté bloqueado o la aplicación no esté en memoria. Las reglas filtran por aplicación y por contacto, con disparadores independientes para mensajes y llamadas.",
+        "result": "App publicada con monetización por suscripción mediante RevenueCat y anuncios con AdMob. El esquema de reglas ha pasado por cuatro iteraciones con migración automática hacia atrás, así que ninguna actualización ha roto la configuración de un usuario, y una triple barrera —reactiva en Dart, proactiva al arrancar y defensiva en Kotlin— mantiene coherente el estado premium incluso sin conexión."
+      },
+      "enterprise-employee-system": {
+        "title": "Enterprise Employee System",
+        "summary": "Plataforma corporativa de gestión de personal sobre .NET 8 y Angular, desplegada en Azure con CI/CD y observabilidad.",
+        "role": "Arquitectura, backend, frontend y DevOps",
+        "problem": "Gestionar una plantilla grande desde hojas de cálculo no escala: no hay filtros combinados, no hay trazabilidad cuando algo falla y nadie se entera de un error hasta que un usuario lo reporta por su cuenta.",
+        "solution": "Una API en .NET 8 con Entity Framework Core y un frontend en Angular con Material Design. El listado resuelve paginación, ordenación y filtrado multi-criterio en el servidor, no en el navegador. Un interceptor HTTP centraliza los errores de cara al usuario y un manejador global los registra en Application Insights; ante un fallo 500 el sistema dispara una alerta al equipo técnico en lugar de esperar a que alguien lo note.",
+        "result": "Sistema desplegado en Azure App Service y Static Web Apps mediante un pipeline de GitHub Actions en varias etapas: control de calidad del backend, compilación del frontend con inyección de entorno y despliegue en paralelo. Todos los secretos viven en variables de entorno de Azure y GitHub Secrets — nada sensible llega al repositorio."
+      },
+      "the-roulette-game": {
+        "title": "The Roulette Game",
+        "summary": "Ruleta de casino jugable en el navegador, con lógica de apuestas y persistencia, construida como prueba técnica con stack impuesto.",
+        "role": "Desarrollo full-stack",
+        "problem": "Una prueba técnica con tecnologías cerradas de antemano: reproducir la ruleta de casino con apuestas a color, par/impar y número específico, resolviendo correctamente la lógica de pagos y la persistencia del historial.",
+        "solution": "Frontend en Vue 3 con TypeScript y Pinia para el estado de la mesa, las apuestas y el saldo; backend en .NET con SQL Server para resolver la tirada, calcular los pagos según el tipo de apuesta y guardar el historial. Todo empaquetado con Docker para levantarlo con un solo comando.",
+        "result": "Un juego completo y desplegable, con la lógica de apuestas cubierta y una separación clara entre la simulación en el cliente y la resolución autoritativa en el servidor."
+      }
+    }
+  },
+  "services": {
+    "eyebrow": "En qué puedo ayudarte",
+    "title": "Servicios",
+    "lead": "Trabajo de principio a fin: entiendo el problema de negocio, decido la arquitectura, construyo y dejo el despliegue funcionando.",
+    "items": {
+      "product": {
+        "title": "Productos web y SaaS",
+        "text": "Del prototipo al producto multi-inquilino en producción: paneles, facturación, roles y todo lo aburrido que hace falta para cobrar.",
+        "bullets": {
+          "0": "Next.js · React · Angular",
+          "1": "Multi-inquilino y suscripciones",
+          "2": "Paneles y analíticas"
+        }
+      },
+      "api": {
+        "title": "APIs y backend",
+        "text": "Servicios pensados para que otro equipo pueda integrarlos sin llamarte: contratos claros, errores útiles y comportamiento predecible bajo carga.",
+        "bullets": {
+          "0": ".NET 8 · Node.js · Python",
+          "1": "SQL Server · PostgreSQL",
+          "2": "Autenticación y pasarelas de pago"
+        }
+      },
+      "mobile": {
+        "title": "Aplicaciones móviles",
+        "text": "Apps Android que bajan hasta la capa nativa cuando el producto lo exige, con suscripciones y publicación en tienda incluidas.",
+        "bullets": {
+          "0": "Flutter · Kotlin nativo",
+          "1": "Suscripciones y anuncios",
+          "2": "Publicación en Google Play"
+        }
+      },
+      "cloud": {
+        "title": "Cloud y DevOps",
+        "text": "El paso que suele quedarse a medias: pipelines que despliegan solos, secretos fuera del repositorio y alertas cuando algo se rompe.",
+        "bullets": {
+          "0": "Azure · Vercel · Docker",
+          "1": "CI/CD con GitHub Actions",
+          "2": "Monitorización y alertas"
+        }
+      }
+    }
+  },
+  "stack": {
+    "eyebrow": "Herramientas",
+    "title": "Stack tecnológico",
+    "lead": "Lo que uso a diario, agrupado por dónde encaja. Todo lo de esta lista está en alguno de los casos de estudio de arriba.",
+    "groups": {
+      "frontend": {
+        "title": "Front-end",
+        "text": "Interfaces rápidas, accesibles y que se dejan mantener por otra persona."
+      },
+      "backend": {
+        "title": "Back-end",
+        "text": "APIs y modelos de datos que aguantan crecer sin reescribirse."
+      },
+      "mobile": {
+        "title": "Móvil",
+        "text": "Apps Android en Flutter, con Kotlin cuando hay que tocar el sistema."
+      },
+      "cloud": {
+        "title": "Cloud y DevOps",
+        "text": "Despliegue automatizado, entornos separados y visibilidad en producción."
+      }
+    }
+  },
+  "about": {
+    "eyebrow": "Quién hay detrás",
+    "title": "Sobre mí",
+    "lead": "Desarrollador full-stack con base en República Dominicana, trabajando con equipos y clientes dentro y fuera del país.",
+    "bio": {
+      "p1": "Empecé en 2020 construyendo tiendas de comercio electrónico y una obsesión por entender cómo funcionan las cosas por dentro. Seis años después sigo con la misma obsesión, solo que ahora los proyectos llegan a producción y tienen usuarios que dependen de ellos.",
+      "p2": "Me muevo con soltura en los dos extremos: puedo bajar a una capa nativa en Kotlin para interceptar notificaciones del sistema, y el mismo mes montar un pipeline de despliegue en Azure o diseñar el modelo de datos de un SaaS multi-inquilino. Lo que no cambia es el criterio — prefiero una solución aburrida que se entienda a una elegante que nadie pueda mantener.",
+      "p3": "Hoy soy fundador de RCDL APPS, donde construyo mis propios productos —Screen Notify y Modest POS—, mientras sigo tomando trabajo de consultoría en backend, móvil y cloud."
+    },
+    "details": {
+      "location": "Ubicación",
+      "availability": "Disponibilidad",
+      "availabilityValue": "Freelance y contrato",
+      "languages": "Idiomas",
+      "languagesValue": "Español · Inglés",
+      "focus": "Enfoque",
+      "focusValue": "SaaS, APIs y móvil"
+    },
+    "stats": {
+      "years": {
+        "value": "6+",
+        "label": "Años de experiencia"
+      },
+      "projects": {
+        "value": "6+",
+        "label": "Proyectos con empresas"
+      },
+      "collabs": {
+        "value": "8+",
+        "label": "Colaboraciones"
+      },
+      "certs": {
+        "value": "8+",
+        "label": "Certificaciones"
+      }
+    },
+    "timeline": {
+      "title": "Trayectoria",
+      "items": {
+        "2020": "Primeros años como desarrollador web fullstack en Softver: tiendas de comercio electrónico, integración de Stripe y CMS headless.",
+        "2023": "Backend .NET en Meditod, construyendo endpoints y módulos para un ERP con foco en seguridad y rendimiento.",
+        "2025": "Frontend en Insoltech para una plataforma del sector financiero, optimizando rendimiento y accesibilidad.",
+        "2026": "Fullstack semi-senior en Kleio Inc. con Angular 19 (SSR, NgRx) y microservicios en ASP.NET Core 8 sobre Azure. En paralelo lancé Screen Notify y Modest POS bajo RCDL APPS."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Hablemos",
+    "title": "¿Tienes un proyecto en mente?",
+    "lead": "Cuéntame qué quieres construir y te respondo con una primera lectura del problema, no con un presupuesto genérico.",
+    "cta": "Escríbeme",
+    "direct": {
+      "email": "Correo directo",
+      "copy": "Copiar correo",
+      "copied": "¡Copiado!",
+      "linkedin": "Conectemos en LinkedIn",
+      "github": "Mira el código"
+    },
+    "fields": {
+      "name": "Nombre",
+      "email": "Correo",
+      "company": "Empresa (opcional)",
+      "message": "Mensaje",
+      "messagePlaceholder": "Qué quieres construir, en qué plazo y qué tienes ya montado."
+    },
+    "errors": {
+      "name": "Dime cómo te llamas.",
+      "email": "Necesito un correo válido para responderte.",
+      "message": "Cuéntame un poco más — al menos un par de frases."
+    },
+    "consent": "Solo uso estos datos para responderte. Nada de listas de correo.",
+    "submit": "Enviar mensaje",
+    "sending": "Enviando…",
+    "success": "Mensaje enviado. Te respondo en menos de 24 horas.",
+    "error": "No pude enviar el mensaje. Escríbeme directamente a"
+  },
+  "caseStudies": {
+    "year": "Año",
+    "role": "Mi rol",
+    "type": "Tipo",
+    "stack": "Stack tecnológico",
+    "links": "Enlaces",
+    "visitSite": "Ver en vivo",
+    "viewStore": "Ver en Google Play",
+    "viewSource": "Ver código",
+    "problem": "El problema",
+    "solution": "La solución",
+    "result": "El resultado",
+    "ctaTitle": "¿Quieres algo así?",
+    "ctaLead": "Si tu proyecto se parece a este, cuéntamelo y te digo por dónde lo empezaría.",
+    "ctaSimilar": "Hablemos de tu proyecto",
+    "ctaSubject": "Proyecto similar a",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "pagination": "Navegación entre casos de estudio",
+    "mediaPending": "Material audiovisual en preparación",
+    "mediaAlt": "{{title}} — captura {{index}}",
+    "expand": "Ver a pantalla completa",
+    "prevSlide": "Anterior",
+    "nextSlide": "Siguiente",
+    "goToSlide": "Ir a la imagen {{index}}"
+  },
   "footer": {
-    "slogan": "Soluciones tecnológicas hechas con dedicación",
-    "contact": "Contacto",
-    "email": "Correo electrónico",
-    "rights": "Todos los derechos reservados"
+    "slogan": "Desarrollador full-stack. Construyo SaaS, APIs y aplicaciones móviles que llegan a producción y se quedan ahí.",
+    "navTitle": "Navegación",
+    "contactTitle": "Contacto",
+    "rights": "Todos los derechos reservados.",
+    "backToTop": "Volver arriba"
   },
-
   "seo": {
-    "defaultTitle": "Full-Stack Developer | Riandry Connor",
-    "defaultDescription": "Desarrollador Full-Stack especializado en aplicaciones web, APIs y soluciones escalables.",
-    "home":"Inicio"
+    "defaultDescription": "Riandry Connor, desarrollador full-stack. Casos de estudio de SaaS con IA, apps Android en Flutter, sistemas corporativos en .NET y despliegue en Azure.",
+    "home": "Inicio"
   }
 }

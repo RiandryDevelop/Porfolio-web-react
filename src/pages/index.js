@@ -1,36 +1,28 @@
-import Acomplishments from '../components/Acomplishments/Acomplishments';
-import BgAnimation from '../components/BackgrooundAnimation/BackgroundAnimation';
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations';
+import { useTranslation } from 'next-i18next/pages';
+
+import About from '../components/About/About';
+import Contact from '../components/Contact/Contact';
 import Hero from '../components/Hero/Hero';
 import Projects from '../components/Projects/Projects';
+import Seo from '../components/SEO/Seo';
+import Services from '../components/Services/Services';
 import Technologies from '../components/Technologies/Technologies';
-import Timeline from '../components/TimeLine/TimeLine';
 import { Layout } from '../layout/Layout';
-import { Section } from '../styles/GlobalComponents';
-import Head from 'next/head';
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
 
 const Home = () => {
+  const { t } = useTranslation('common');
+
   return (
-    <>
-      <Head>
-        <title>Full-Stack Developer | Riandry Connor</title>
-        <meta
-          name="description"
-          content="Full-Stack Developer especializado en productos web escalables, APIs robustas y aplicaciones móviles."
-        />
-      </Head>
     <Layout>
-      <Section grid>
-        <Hero />
-        <BgAnimation />
-      </Section>
+      <Seo description={t('seo.defaultDescription')} />
+      <Hero />
       <Projects />
+      <Services />
       <Technologies />
-      <Timeline />
-      <Acomplishments />
+      <About />
+      <Contact />
     </Layout>
-    </>
   );
 };
 
@@ -39,7 +31,7 @@ export default Home;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common"])),
+      ...(await serverSideTranslations(locale, ['common'])),
     },
   };
 }
